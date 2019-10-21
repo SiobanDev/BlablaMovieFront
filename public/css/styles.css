@@ -1,0 +1,187 @@
+/** BOOTSTRAP **************************************************************************************************************************/
+.row{
+    margin: 0;
+}
+
+.container-fluid{
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+/** PAGE ******************************************************************************************************************************/
+*{
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+html, body{
+    width: 100%;
+    height: 100%;
+}
+body {
+    padding : 0;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: 'Fira Sans', Arial, sans-serif, Verdana;
+    font-weight: 300;
+    font-size: 15px;
+    background: url("../images/interstellar.png") no-repeat center;
+    background-size: cover;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+p{
+    margin: 0;
+}
+
+a{
+    color: white;
+}
+
+.main-content{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: linear-gradient(transparent 20%, #1b1b1d 80%);
+}
+
+
+.lign1{
+    width: 4px;
+    height: 80%;
+    border-radius: 2px;
+    background-color: #f7b436;
+    display: block;
+    position: absolute;
+    top: auto;
+    bottom: 10%;
+}
+
+.bold-style{
+    font-weight: 700;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+    /** HEADER ****************************************************************/
+
+header, .navbar, .nav{
+    width: 100%;
+}
+
+nav .search-logout-item{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    flex: 1;
+}
+
+.search-logout-item span {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+nav .search-logout-item span{
+    display: block;
+}
+
+nav .search-logout-item .logout-item {
+    padding-right: 3px;
+}
+
+
+/** HOME **************************************************************
+TO DO : script js pour appliquer le style si sur page accueil. En attendant, .home mis par défaut sur classe body**/
+.home{
+    height: 100vh;
+}
+
+.movie-votes {
+    color: #f7b436;
+}
+
+.main-hook p{
+    font-size: 26px;
+}
+
+.first-hook{
+    display: none;
+}
+
+.first-lines-hook, .last-lines, .members-hook{
+    margin-left: 16px;
+}
+
+p.members-hook{
+    font-size: 18px;
+}
+
+.connexion-btn, .inscription-btn{
+    background-color: transparent;
+    color: #f7b436;
+    border: solid 2px #f7b436;
+    border-radius: 20px;
+    margin: 20px 0;
+}
+
+.inscription-btn{
+    background-color: #f7b436;
+    color: white;
+    margin-left: 12px;
+}
+
+    /** FOOTER **************************************************************/
+footer{
+    background: #1b1b1d;
+    padding-bottom: 10px;
+}
+
+footer .nav {
+    border-top: solid 0.5px rgba(192, 192, 192, 0.2);
+}
+
+footer a {
+    color: rgba(193, 193, 193, 0.57);
+}
+
+footer .medias-item {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+}
+
+footer .nav .facebook-item, footer .nav .pinterest-item, footer .nav .instagram-item, footer .nav .twitter-item {
+    padding: 15px 3px 15px 3px;
+}
+
+/** RESPONSIVE ********************************************************************************************************/
+
+@media (min-width: 768px) {
+
+}
+@media (min-width: 992px) {
+
+    header, .main-content, footer{
+        padding: 0 20%;
+    }
+
+    .home .main-content{
+        padding: 0 20% 10% 20%;
+    }
+
+}
+@media (min-width: 1200px) {
+
+}
