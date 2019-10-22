@@ -10,6 +10,10 @@
     margin-left: 0;
 }
 
+.collapse:not(.show) {
+    display: none;
+}
+
 /** PAGE ******************************************************************************************************************************/
 *{
     position: relative;
@@ -46,6 +50,10 @@ a{
     color: white;
 }
 
+ul {
+    list-style-type: none;
+}
+
 .main-content{
     flex: 1;
     display: flex;
@@ -75,6 +83,10 @@ a{
     align-items: center;
 }
 
+header, .main-content, footer{
+    padding: 5%;
+}
+
     /** HEADER ****************************************************************/
 
 header, .navbar, .nav{
@@ -101,12 +113,27 @@ nav .search-logout-item .logout-item {
     padding-right: 3px;
 }
 
-
-/** HOME **************************************************************
-TO DO : script js pour appliquer le style si sur page accueil. En attendant, .home mis par défaut sur classe body**/
-.home{
-    height: 100vh;
+.navbar-toggler{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .25rem .75rem;
+    background: none;
+    border: none;
 }
+
+.navbar-toggler-icon{
+    background: url("../images/ic-menu-mobile.png") no-repeat center center;
+    background-size: 100% 100%;
+    width: 2em;
+    height: 1.5em;
+    vertical-align: middle;
+    content: "";
+    display: block;
+}
+
+
+/** HOME **************************************************************/
 
 .movie-votes {
     color: #f7b436;
@@ -148,40 +175,92 @@ footer{
     padding-bottom: 10px;
 }
 
-footer .nav {
+footer .footer-row {
+    display: flex;
     border-top: solid 0.5px rgba(192, 192, 192, 0.2);
+    padding: 5%;
+    justify-content: space-between;
+}
+
+footer .footer-links, footer .medias-item{
+    display: flex;
+}
+
+footer .footer-links{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
 }
 
 footer a {
     color: rgba(193, 193, 193, 0.57);
 }
 
-footer .medias-item {
+footer .media-items {
     display: flex;
     justify-content: flex-end;
-    flex: 1;
+    flex-wrap: wrap;
+    padding: 0;
+    position: absolute;
+    top: 50%;
 }
 
-footer .nav .facebook-item, footer .nav .pinterest-item, footer .nav .instagram-item, footer .nav .twitter-item {
+footer .media-item {
+    flex-wrap: wrap;
+    padding-left: 0px;
+    width: 50%;
+}
+
+footer .footer-row .facebook-item, footer .footer-row .pinterest-item, footer .footer-row .instagram-item, footer .footer-row .twitter-item {
     padding: 15px 3px 15px 3px;
 }
 
 /** RESPONSIVE ********************************************************************************************************/
 
 @media (min-width: 768px) {
+    .navbar-expand-sm .navbar-toggler {
+        display: none;
+    }
+
+    footer .footer-row {
+        padding: 2% 0;
+    }
+
+    footer .logo-item{
+        margin-right: 2%;
+    }
+
+    footer .footer-links{
+        display: flex;
+        flex-direction: row;
+    }
+
+    footer .media-items {
+        flex: 1;
+        width: auto;
+    }
+
+    footer .media-items {
+        position: relative;
+    }
 
 }
 @media (min-width: 992px) {
+
+
+}
+
+@media (min-width: 1200px) {
 
     header, .main-content, footer{
         padding: 0 20%;
     }
 
-    .home .main-content{
+    .accueil-content{
         padding: 0 20% 10% 20%;
     }
 
-}
-@media (min-width: 1200px) {
+
 
 }

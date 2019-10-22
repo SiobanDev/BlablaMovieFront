@@ -1,224 +1,233 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>SuperMovies</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SuperMovies</title>
 
-        <!-- Bootstrap -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-              crossorigin="anonymous">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
 
-        <!-- Fonts -->
-        <style>
-            @import url('https://fonts.googleapis.com/css?family=Fira+Sans:300,400,700&display=swap');
-        </style>
+    <!-- Fonts -->
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Fira+Sans:300,400,700&display=swap');
+    </style>
 
-        <!-- SuperMovies style -->
-        <link href="public/css/styles.css" rel="stylesheet">
+    <!-- SuperMovies style -->
+    <link href="public/css/styles.css" rel="stylesheet">
 
-    </head>
+</head>
 
-    <body class="container-fluid home">
-        <!-- Header -->
-        <header class="row">
-            <!-- Navigation Menu -->
-            <nav class="navbar navbar-static-top">
-                <ul class="nav navbar-nav row">
-                    <li class="logo-item item col-s-2">
-                        <a href="/">
-                            <img class="logo" src="public/images/logo-supermovies.png" alt="logo superMovies">
-                        </a>
-                    </li>
+<body class="container-fluid">
+<!-- Header -->
+<header class="row">
+    <!-- Navigation Menu -->
+    <nav class="navbar navbar-expand-sm navbar-static-top">
+        <ul id="header-navigation" class="nav navbar-nav collapse navbar-collapse row">
+            <li class="logo-item item col-s-2">
+                <a href="/">
+                    <img class="logo" src="public/images/logo-supermovies.png" alt="logo superMovies">
+                </a>
+            </li>
 
-                    <li class="propos-item nav-item col-s-1">
-                        <a href="/infos">A propos</a>
-                    </li>
+            <li class="propos-item nav-item col-s-1">
+                <a href="/infos">A propos</a>
+            </li>
 
-                    <li class="movies-item nav-item col-s-1">
-                        <a href="/movies">Films</a>
-                    </li>
+            <li class="movies-item nav-item col-s-1">
+                <a href="/movies">Films</a>
+            </li>
 
-                    <li class="historical-item nav-item col-s-1">
-                        <a href="/historical">Historique</a>
-                    </li>
+            <li class="historical-item nav-item col-s-1">
+                <a href="/historical">Historique</a>
+            </li>
 
-                    <li class="contact-item nav-item col-s-1">
-                        <a href="/contact">Contact</a>
-                    </li>
+            <li class="contact-item nav-item col-s-1">
+                <a href="/contact">Contact</a>
+            </li>
 
-                    <li class="search-logout-item nav-item col-s-1">
-                        <span class="glyphicon glyphicon-search"></span>
+            <li class="search-logout-item nav-item col-s-1">
+                <span class="glyphicon glyphicon-search"></span>
 
-                        <a class="logout-item" href="/logout">Déconnexion</a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
+                <a class="logout-item" href="/logout">Déconnexion</a>
+            </li>
+        </ul>
 
-        <!-- Application Root & Content -->
-        <section id="app" class="main-content row">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#header-navigation"
+                aria-controls="header-navigation" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
 
-            <div class="accueil-content">
 
+</header>
 
-                <div class="main-hook">
-                    <div class="first-hook">
-                        <p class="best-week-movie-hook">Last week, the winner was :</p>
-                        <p class="best-week-movie"></p>
-                        <p class="all-votes"><span class="movie-votes"></span><span class="week-votes"></span></p>
-                    </div>
+<!-- Application Root & Content -->
+<section id="app" class="main-content row">
 
-                    <div class="second-hook">
-                        <div class="lign1"></div>
-                        <p class="first-lines-hook"><span class="bold-style">Votez pour votre film préféré</span><br/>
-                            et découvrez le classement
-                        </p>
-                    </div>
-
-                    <p class="last-lines"> au fil des jours !</p>
-
-                    <p class="members-hook">Déjà <span class="members-number"></span> membres</p>
-
-                    <button type="submit" class="connexion-btn btn">CONNEXION</button>
-                    <button type="submit" class="inscription-btn btn">INSCRIPTION</button>
-
-                </div>
+    <div class="accueil-content">
+        <div class="main-hook">
+            <div class="first-hook">
+                <p class="best-week-movie-hook">Last week, the winner was :</p>
+                <p class="best-week-movie"></p>
+                <p class="all-votes"><span class="movie-votes"></span><span class="week-votes"></span></p>
             </div>
-        </section>
 
-        <footer class="row">
-            <ul class="nav navbar-nav row">
-                <li class="logo-item item col-s-2">
-                    <a href="/">
-                        <img class="logo" src="public/images/logo-supermovies.png" alt="logo superMovies">
-                    </a>
-                </li>
+            <div class="second-hook">
+                <div class="lign1"></div>
+                <p class="first-lines-hook"><span class="bold-style">Votez pour votre film préféré</span><br/>
+                    et découvrez le classement
+                </p>
+            </div>
 
-                <li class="propos-item nav-item col-s-1">
-                    <a href="/">A propos</a>
-                </li>
+            <p class="last-lines"> au fil des jours !</p>
 
-                <li class="movies-item nav-item col-s-1">
-                    <a href="/movies">Films</a>
-                </li>
+            <p class="members-hook">Déjà <span class="members-number"></span> membres</p>
 
-                <li class="historical-item nav-item col-s-1">
-                    <a href="/historical">Historique</a>
-                </li>
+            <button type="submit" class="connexion-btn btn">CONNEXION</button>
+            <button type="submit" class="inscription-btn btn">INSCRIPTION</button>
 
-                <li class="contact-item nav-item col-s-1">
-                    <a class="contact-item" href="/contact">Contact</a>
-                </li>
+        </div>
+    </div>
+</section>
 
-                <li class="medias-item nav-item">
-                    <a class="facebook-item" href="/facebook">
-                        <img class="fb-icon icon" src="public/images/ic-facebook.png" alt="icone facebook">
-                    </a>
+<footer class="row">
+    <ul class="footer-row col-xs">
+        <li class="logo-item item col-s-2">
+            <a href="/">
+                <img class="logo" src="public/images/logo-supermovies.png" alt="logo superMovies">
+            </a>
+        </li>
+        <ul class="footer-links nav navbar-nav">
+            <li class="propos-item nav-item col-s-1">
+                <a href="/">A propos</a>
+            </li>
 
-                    <a class="pinterest-item" href="/pinterest">
-                        <img class="pint-icon icon" src="public/images/ic-pinterest.png" alt="icone pinterest">
-                    </a>
+            <li class="movies-item nav-item col-s-1">
+                <a href="/movies">Films</a>
+            </li>
 
-                    <a class="twitter-item" href="/twitter">
-                        <img class="tw-icon icon" src="public/images/ic-twitter.png" alt="icone twitter">
-                    </a>
+            <li class="historical-item nav-item col-s-1">
+                <a href="/historical">Historique</a>
+            </li>
 
-                    <a class="instagram-item" href="/instagram">
-                        <img class="inst-icon icon" src="public/images/ic-linkedin.png" alt="icone instagram">
-                    </a>
-                </li>
-            </ul>
-        </footer>
+            <li class="contact-item nav-item col-s-1">
+                <a class="contact-item" href="/contact">Contact</a>
+            </li>
+        </ul>
 
-        <script type="text/javascript" src="public/js/app.js"></script>
+        <ul class="media-items">
+            <li class="media-item nav-item">
+                <a class="facebook-item" href="/facebook">
+                    <img class="fb-icon icon" src="public/images/ic-facebook.png" alt="icone facebook">
+                </a>
 
-        <!-- Error Template -->
-        <script id="error-template" type="text/html">
+                <a class="pinterest-item" href="/pinterest">
+                    <img class="pint-icon icon" src="public/images/ic-pinterest.png" alt="icone pinterest">
+                </a>
 
-        </script>
+                <a class="twitter-item" href="/twitter">
+                    <img class="tw-icon icon" src="public/images/ic-twitter.png" alt="icone twitter">
+                </a>
 
-        <!-- A propos Template -->
-        <script id="a-propos-template" type="text/html">
+                <a class="instagram-item" href="/instagram">
+                    <img class="inst-icon icon" src="public/images/ic-linkedin.png" alt="icone instagram">
+                </a>
+            </li>
+        </ul>
 
-        </script>
+    </ul>
+</footer>
 
-        <!-- Movies Template -->
-        <script id="movies-template" type="text/html">
-            <ul class="pagination">
-                <li><a href="#">&laquo;</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">&raquo;</a></li>
-            </ul>
-        </script>
+<script type="text/javascript" src="public/js/app.js"></script>
 
-        <!-- Historical Template -->
-        <script id="historical-template" type="text/html">
-
-        </script>
-
-        <!-- Contact Template -->
-        <script id="contact-template" type="text/html">
+<!-- Error Template -->
+<script id="error-template" type="text/html">
 
         </script>
 
-        <!-- Pagination -->
-        <!-- TO DO : convertir le jquery en js -->
-        <script>
-            var show_per_page = 3;
-            var current_page = 0;
-
-            function set_display(first, last) {
-                document.querySelector('#content').childNodes.css('display', 'none');
-                document.querySelector('#content').childNodes.slice(first, last).css('display', 'block');
-            }
-
-            function previous() {
-                if (document.querySelector('.active').prev('.page_link').length) go_to_page(current_page - 1);
-            }
-
-            function next() {
-                if (document.querySelector('.active').next('.page_link').length) go_to_page(current_page + 1);
-            }
-
-            function go_to_page(page_num) {
-                current_page = page_num;
-                start_from = current_page * show_per_page;
-                end_on = start_from + show_per_page;
-                set_display(start_from, end_on);
-                document.querySelector('.active').classList.remove('active');
-                document.querySelector('#id' + page_num).classList.add('active');
-            }
-
-            document.querySelector(document).ready(function () {
-
-                var number_of_pages = Math.ceil(document.querySelector('#content').childNodes.length / show_per_page);
-
-                var nav = '<ul class="pagination"><li><a href="javascript:previous();">&laquo;</a>';
-
-                var i = -1;
-                while (number_of_pages > ++i) {
-                    nav += '<li class="page_link'
-                    if (!i) nav += ' active';
-                    nav += '" id="id' + i + '">';
-                    nav += '<a href="javascript:go_to_page(' + i + ')">' + (i + 1) + '</a>';
-                }
-                nav += '<li><a href="javascript:next();">&raquo;</a></ul>';
-
-                document.querySelector('#page_navigation').html(nav);
-                set_display(0, show_per_page);
-
-            });
+<!-- A propos Template -->
+<script id="a-propos-template" type="text/html">
 
         </script>
 
-        <!-- Bootstrap -->
-        <script src="public/https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-                crossorigin="anonymous"></script>
-    </body>
+<!-- Movies Template -->
+<script id="movies-template" type="text/html">
+    <ul class="pagination">
+        <li><a href="#">&laquo;</a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">&raquo;</a></li>
+    </ul>
+</script>
+
+<!-- Historical Template -->
+<script id="historical-template" type="text/html">
+
+        </script>
+
+<!-- Contact Template -->
+<script id="contact-template" type="text/html">
+
+        </script>
+
+<!-- Pagination -->
+<!-- TO DO : convertir le jquery en js -->
+<script>
+    var show_per_page = 3;
+    var current_page = 0;
+
+    function set_display(first, last) {
+        document.querySelector('#content').childNodes.css('display', 'none');
+        document.querySelector('#content').childNodes.slice(first, last).css('display', 'block');
+    }
+
+    function previous() {
+        if (document.querySelector('.active').prev('.page_link').length) go_to_page(current_page - 1);
+    }
+
+    function next() {
+        if (document.querySelector('.active').next('.page_link').length) go_to_page(current_page + 1);
+    }
+
+    function go_to_page(page_num) {
+        current_page = page_num;
+        start_from = current_page * show_per_page;
+        end_on = start_from + show_per_page;
+        set_display(start_from, end_on);
+        document.querySelector('.active').classList.remove('active');
+        document.querySelector('#id' + page_num).classList.add('active');
+    }
+
+    document.querySelector(document).ready(function () {
+
+        var number_of_pages = Math.ceil(document.querySelector('#content').childNodes.length / show_per_page);
+
+        var nav = '<ul class="pagination"><li><a href="javascript:previous();">&laquo;</a>';
+
+        var i = -1;
+        while (number_of_pages > ++i) {
+            nav += '<li class="page_link'
+            if (!i) nav += ' active';
+            nav += '" id="id' + i + '">';
+            nav += '<a href="javascript:go_to_page(' + i + ')">' + (i + 1) + '</a>';
+        }
+        nav += '<li><a href="javascript:next();">&raquo;</a></ul>';
+
+        document.querySelector('#page_navigation').html(nav);
+        set_display(0, show_per_page);
+
+    });
+
+</script>
+
+<!-- Bootstrap -->
+<script src="public/https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+</body>
 </html>

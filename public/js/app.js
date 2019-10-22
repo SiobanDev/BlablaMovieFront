@@ -11,11 +11,9 @@ const app = {
 
         const inscriptionResponse = await this.myFetch('https://blablamovieapi/user', 'POST', null, null, $loginForm);
 
-        $serializer
+        const inscriptionJsonResponse = JSON.stringify(inscriptionResponse,  null, '\t');
 
-        const inscriptionJsonResponse = JSON.parse(inscriptionResponse);
-
-        $button = document.querySelector('#button')
+        let $button = document.querySelector('#button')
 
         $button.addEventListener('submit', async () => {
 
