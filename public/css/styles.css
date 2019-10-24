@@ -14,6 +14,18 @@
     display: none;
 }
 
+.navbar {
+    margin-bottom: 0;
+}
+
+body .navbar-nav {
+    margin: 0;
+}
+
+.navbar-nav > li > a {
+    line-height: 10px;
+}
+
 /** PAGE ******************************************************************************************************************************/
 *{
     position: relative;
@@ -34,12 +46,13 @@ body {
     font-family: 'Fira Sans', Arial, sans-serif, Verdana;
     font-weight: 300;
     font-size: 15px;
-    background: url("../images/interstellar.png") no-repeat center;
+    background: url("../images/interstellar.png") no-repeat;
     background-size: cover;
     color: #ffffff;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    background-position-x: 65%;
 }
 
 p{
@@ -78,39 +91,62 @@ ul {
     font-weight: 700;
 }
 
+header, .main-content, footer{
+    padding: 5%;
+}
+
+.navbar{
+    display: flex;
+    align-items: center;
+}
+
 .nav {
     display: flex;
     align-items: center;
 }
 
-header, .main-content, footer{
-    padding: 5%;
-}
+
 
     /** HEADER ****************************************************************/
+header{
+    display: flex;
+}
 
-header, .navbar, .nav{
+header, .nav{
     width: 100%;
 }
 
-nav .search-logout-item{
+header .search-logout-item{
     display: flex;
     justify-content: flex-end;
-    align-items: flex-start;
+    align-items: center;
     flex: 1;
-}
-
-.search-logout-item span {
     padding-top: 15px;
     padding-bottom: 15px;
 }
 
-nav .search-logout-item span{
-    display: block;
+header .logo-item {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-right: 30px;
 }
 
-nav .search-logout-item .logout-item {
-    padding-right: 3px;
+header .search-logout-item span{
+    display: block;
+    font-size: 20px;
+}
+
+header .logout-item {
+    display: none;
+    border: solid 2px #eee;
+    border-radius: 20px;
+    padding: 6px 12px;
+    margin-left: 30px;
+}
+
+header .search-logout-item .logout-item {
+    color: #eee;
+    font-size: 13px;
 }
 
 .navbar-toggler{
@@ -155,6 +191,13 @@ p.members-hook{
     font-size: 18px;
 }
 
+.home-buttons{
+    display: flex;
+    flex-direction: column-reverse;
+    min-width: 115px;
+    width: 20%;
+}
+
 .connexion-btn, .inscription-btn{
     background-color: transparent;
     color: #f7b436;
@@ -166,7 +209,7 @@ p.members-hook{
 .inscription-btn{
     background-color: #f7b436;
     color: white;
-    margin-left: 12px;
+    margin-left: 0;
 }
 
     /** FOOTER **************************************************************/
@@ -176,10 +219,18 @@ footer{
 }
 
 footer .footer-row {
-    display: flex;
     border-top: solid 0.5px rgba(192, 192, 192, 0.2);
-    padding: 5%;
+}
+
+footer .footer-row > ul {
+    display: flex;
+    margin: 5%;
     justify-content: space-between;
+    padding: 0;
+}
+
+footer .logo-item{
+    height: 50%;
 }
 
 footer .footer-links, footer .medias-item{
@@ -189,6 +240,7 @@ footer .footer-links, footer .medias-item{
 footer .footer-links{
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     width: 50%;
     height: 100%;
 }
@@ -209,7 +261,8 @@ footer .media-items {
 footer .media-item {
     flex-wrap: wrap;
     padding-left: 0px;
-    width: 50%;
+    margin-bottom: 10%;
+    width: 100%;
 }
 
 footer .footer-row .facebook-item, footer .footer-row .pinterest-item, footer .footer-row .instagram-item, footer .footer-row .twitter-item {
@@ -223,8 +276,21 @@ footer .footer-row .facebook-item, footer .footer-row .pinterest-item, footer .f
         display: none;
     }
 
+    .home-buttons{
+        display: flex;
+        flex-direction: row;
+    }
+
+    .home-buttons .inscription-btn{
+        margin-left: 12px;
+    }
+
     footer .footer-row {
         padding: 2% 0;
+    }
+
+    footer .footer-row > ul {
+        margin: 2% 0;
     }
 
     footer .logo-item{
@@ -239,15 +305,21 @@ footer .footer-row .facebook-item, footer .footer-row .pinterest-item, footer .f
     footer .media-items {
         flex: 1;
         width: auto;
+        position: relative;
+        flex-wrap: nowrap;
     }
 
-    footer .media-items {
-        position: relative;
+    footer .media-item {
+        width: auto;
+        margin-bottom: 0;
+        display: flex;
     }
 
 }
 @media (min-width: 992px) {
-
+    body{
+        background-position: center;
+    }
 
 }
 
