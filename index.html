@@ -7,9 +7,8 @@
     <title>SuperMovies</title>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
 
     <!-- Fonts -->
     <style>
@@ -25,27 +24,27 @@
 <!-- Header -->
 <header class="row">
 
-    <a class="logo-item item col-s-2" href="/">
+    <a class="logo-item item col-s-2" href="#accueil">
         <img class="logo" src="public/images/logo-supermovies.png" alt="logo superMovies">
     </a>
 
     <!-- Navigation Menu -->
-    <nav class="navbar navbar-expand-sm navbar-static-top">
+    <nav class="navbar navbar-expand-sm">
         <ul id="header-navigation" class="nav navbar-nav collapse navbar-collapse row">
             <li class="propos-item nav-item col-s-1">
-                <a href="/infos">A propos</a>
+                <a href="#infos">A propos</a>
             </li>
 
             <li class="movies-item nav-item col-s-1">
-                <a href="/movies">Films</a>
+                <a href="#movies">Films</a>
             </li>
 
             <li class="historical-item nav-item col-s-1">
-                <a href="/historical">Historique</a>
+                <a href="#historical">Historique</a>
             </li>
 
             <li class="contact-item nav-item col-s-1">
-                <a href="/contact">Contact</a>
+                <a href="#contact">Contact</a>
             </li>
         </ul>
 
@@ -56,11 +55,9 @@
     </nav>
 
     <div class="search-logout-item nav-item col-s-1">
-        <span class="glyphicon glyphicon-search"></span>
+        <span class="fas fa-search"></span>
         <a class="logout-item" href="/logout">Déconnexion</a>
     </div>
-
-
 </header>
 
 <!-- Application Root & Content -->
@@ -70,25 +67,25 @@
     <div class="footer-row col-xs">
         <ul>
             <li class="logo-item item col-s-2">
-                <a href="/">
+                <a href="#accueil">
                     <img class="logo" src="public/images/logo-supermovies.png" alt="logo superMovies">
                 </a>
             </li>
             <ul class="footer-links nav navbar-nav">
                 <li class="propos-item nav-item col-s-1">
-                    <a href="/">A propos</a>
+                    <a href="#infos">A propos</a>
                 </li>
 
                 <li class="movies-item nav-item col-s-1">
-                    <a href="/movies">Films</a>
+                    <a href="#movies">Films</a>
                 </li>
 
                 <li class="historical-item nav-item col-s-1">
-                    <a href="/historical">Historique</a>
+                    <a href="#historical">Historique</a>
                 </li>
 
                 <li class="contact-item nav-item col-s-1">
-                    <a class="contact-item" href="/contact">Contact</a>
+                    <a class="contact-item" href="#contact">Contact</a>
                 </li>
             </ul>
 
@@ -116,16 +113,17 @@
             </li>
         </ul>
     </div>
-
 </footer>
 
-<script type="text/javascript" src="public/js/route.js"></script>
-<script type="text/javascript" src="public/js/router.js"></script>
-<script type="text/javascript" src="public/js/app.js"></script>
+<script src="public/js/route.js"></script>
+<script src="public/js/router.js"></script>
+<script src="public/js/app.js"></script>
 
 <!-- Bootstrap -->
-<script src="public/https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
+<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>-->
+<!-- Icons -->
+<script src="https://kit.fontawesome.com/a7cc21547b.js" crossorigin="anonymous"></script>
+
 </body>
 </html>

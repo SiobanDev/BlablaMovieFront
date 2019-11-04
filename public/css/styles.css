@@ -1,6 +1,7 @@
 /** BOOTSTRAP **************************************************************************************************************************/
 .row{
     margin: 0;
+    display: block;
 }
 
 .container-fluid{
@@ -22,8 +23,15 @@ body .navbar-nav {
     margin: 0;
 }
 
+body .navbar-toggler {
+    font-size: inherit;
+}
+
 .navbar-nav > li > a {
     line-height: 10px;
+    position: relative;
+    display: block;
+    padding: 10px 15px;
 }
 
 /** PAGE ******************************************************************************************************************************/
@@ -108,7 +116,7 @@ header, .main-content, footer{
 
 
     /** HEADER ****************************************************************/
-header{
+header.row{
     display: flex;
 }
 

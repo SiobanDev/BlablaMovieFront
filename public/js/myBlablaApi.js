@@ -2,14 +2,31 @@
 //     const app = window.querySelector('#app');
 // }
 
+let profile = {
+    login: undefined,
+    pwd: undefined,
+    mail: undefined,
+    birth_date: undefined,
+    votes: undefined
+}
+
+let movie = {
+    title: undefined,
+    year: undefined,
+    imdbID: undefined,
+    poster: undefined,
+    voters: undefined
+}
+
 const app = {
     init() {
         this.myHttpRequest();
     },
 
     async myHttpRequest() {
-
-        const inscriptionResponse = await this.myFetch('https://blablamovieapi/user', 'POST', null, null, $loginForm);
+        //INSCRIPTION
+        const $signUpForm = "TO DO";
+        const inscriptionResponse = await this.myFetch('https://localhost:8000/user', 'POST', null, null, $signUpForm);
 
         const inscriptionJsonResponse = JSON.stringify(inscriptionResponse,  null, '\t');
 
@@ -17,8 +34,29 @@ const app = {
 
         $button.addEventListener('submit', async () => {
 
-            inscriptionJsonResponse.forEach((user, id) => {
-                user.username
+            inscriptionJsonResponse.forEach((id) => {
+                profile.login = id.login;
+                profile.pwd = id.password;
+                profile.mail = id.mail;
+                profile.birth_date = id.birth_date;
+            })
+        })
+
+        //CONNEXION
+        const $loginForm = "TO DO";
+        const connexionResponse = await this.myFetch('https://localhost:8000/login', 'POST', null, null, $loginForm);
+
+        const connexionJsonResponse = JSON.stringify(connexionResponse,  null, '\t');
+
+        let $button = document.querySelector('#button')
+
+        $button.addEventListener('submit', async () => {
+
+            connexionJsonResponse.forEach((id) => {
+                profile.login = id.login;
+                profile.pwd = id.password;
+                profile.mail = id.mail;
+                profile.birth_date = id.birth_date;
             })
         })
     },
