@@ -71,7 +71,7 @@
 //         const inscriptionJsonResponse = JSON.parse(inscriptionResponse);
 //
 //         inscriptionJsonResponse.forEach((user, id) => {
-//             user.username
+//             user.login
 //         })
 //
 //     })

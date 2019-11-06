@@ -2,13 +2,7 @@
 //     const app = window.querySelector('#app');
 // }
 
-let profile = {
-    login: undefined,
-    pwd: undefined,
-    mail: undefined,
-    birth_date: undefined,
-    votes: undefined
-};
+
 
 let movie = {
     title: undefined,
@@ -20,39 +14,21 @@ let movie = {
 
 const app = {
     init() {
-        console.log('ok')
+        console.log('ok1')
         this.myHttpRequest();
     },
 
-    async myHttpRequest() {
-        //INSCRIPTION
-        const $signUpForm = document.querySelector('#inscriptionForm');
+    async myHttpRequest($domElement, $url, $method) {
+        console.log('ok3');
 
-        $signUpForm.addEventListener('submit', async () => {
+        const $element = document.querySelector($domElement);
 
-            profile = await this.myFetch('https://localhost:8000/user', 'POST', null, null, $signUpForm);
+        $element.addEventListener('submit', async () => {
+
+            profile = await this.myFetch($url, $method, null, null, $element);
 
         })
-
-        //CONNEXION
-        const $loginForm = "TO DO";
-        const connexionResponse = await this.myFetch('https://localhost:8000/login', 'POST', null, null, $loginForm);
-
-        const connexionJsonResponse = JSON.stringify(connexionResponse,  null, '\t');
-
-        // let $button = document.querySelector('#button')
-        //
-        // $button.addEventListener('submit', async () => {
-        //
-        //     connexionJsonResponse.forEach((id) => {
-        //         profile.login = id.login;
-        //         profile.pwd = id.password;
-        //         profile.mail = id.mail;
-        //         profile.birth_date = id.birth_date;
-        //     })
-        // })
     },
-
     myFetch(url, method, headersName, headersValue, body) {
         //dans une arrow fonction, le scope du this remonte au parent (et continue de remonter si le parent est aussi un arrow fonction
         return new Promise((resolve, reject) => {
@@ -60,6 +36,7 @@ const app = {
 
             req.open(method, url, true);
             req.send(body);
+            req.setRequestHeader(headersName, headersValue);
 
             //dans les functions "normales", le scope du this est celui de la fonction-même
             req.onreadystatechange = function () {
