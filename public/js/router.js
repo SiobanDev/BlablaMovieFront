@@ -25,51 +25,74 @@ Router.prototype = {
     rootElem: undefined,
     constructor: function (routes) {
         this.routes = routes;
-        this.rootElem = document.getElementById('app');
+        // this.rootElem = document.getElementById('app');
     },
     //creates a listener to the hashchange event of window.
     //hashchange event is fired when the fragment identifier of the URL has changed.
     init: function () {
         var r = this.routes;
+
         //scope is the scope of the Router instance
         (function (scope, r) {
             window.addEventListener('hashchange', function (e) {
                 scope.hasChanged(scope, r);
             });
         })(this, r);
-        this.hasChanged(this, r);
+
+        try{
+            this.hasChanged(this, r);
+
+        } catch {
+            throw Error('hasChanged error');
+        }
+
     },
     //If the window location change then hasChanged loads the correct active Route and call another function to load its HTML.
     // If the window location is empty then hasChanged loads the default Route.
-    hasChanged: function (scope, r) {
-        for (var i = 0, lenght = r.length; i < lenght; i++) {
+    hasChanged: async function (scope, r) {
+
+        for (var i = 0, length = r.length; i < length; i++) {
 
             var route = r[i];
 
-            if ((window.location.hash.length > 0) && (route.isActiveRoute(window.location.hash.substr(1)))) {
+            var pageContent = {
+                content: undefined,
+                error: undefined
+            }
 
-                scope.goToRoute(route.htmlName);
+            if (((window.location.hash.length > 0) && (route.isActiveRoute(window.location.hash.substr(1))))
+                || (window.location.hash.length === 0 && route.default)) {
+                console.log('bla', route)
 
-            } else if (route.default) {
-                    scope.goToRoute(route.htmlName);
+                try{
+                    pageContent.content = await scope.loadView(route.htmlName);
+
+                    if (route.callback) {
+                        route.callback(pageContent.content);
+                    }
+                } catch (e) {
+                    pageContent.error = e;
+                }
             }
         }
     },
     // loadView gets and loads the correct HTML for the active route.
-    loadView: function (htmlName) {
-        //Renvoie une promesse OU je rajoute un callback.
-        (function (scope) {
+    loadView: async function (htmlName) {
+
+        return new Promise(resolve => {
             var url = '/public/views/' + htmlName,
                 xhttp = new XMLHttpRequest();
 
             xhttp.onreadystatechange = function () {
 
                 if (this.readyState === 4 && this.status === 200) {
-                    scope.rootElem.innerHTML = this.responseText;
+                    resolve(this.responseText);
                 }
-            };
+            }
+
             xhttp.open('GET', url, true);
+            //Après avoir send la requête, le callback onreadystatechange est automatiquement appelé lors de la réponse du serveur.
             xhttp.send();
-        })(this);
-    }
+        });
+    },
 };

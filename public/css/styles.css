@@ -38,8 +38,45 @@ body .btn, body .form-control {
     width: auto;
 }
 
+label .text-muted {
+    color: white !important;
+}
+
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+}
+
+.form-signin .checkbox {
+    font-weight: 400;
+}
+
+.form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
 /** PAGE ******************************************************************************************************************************/
-*{
+body * {
     position: relative;
     top: 0;
     left: 0;
@@ -49,6 +86,7 @@ html, body{
     width: 100%;
     height: 100%;
 }
+
 body {
     padding : 0;
     margin: 0;
@@ -57,14 +95,14 @@ body {
     left: 0;
     font-family: 'Fira Sans', Arial, sans-serif, Verdana;
     font-weight: 300;
-    font-size: 15px;
-    background: url("../images/interstellar.png") no-repeat;
-    background-size: cover;
+    font-size: 100%;
+    background: url(../images/interstellar-gr.png) no-repeat, black;
+    background-size: 200% auto;
     color: #ffffff;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    background-position-x: 65%;
+    background-position: top;
 }
 
 p{
@@ -84,7 +122,6 @@ body .main-content{
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    background: linear-gradient(transparent 20%, #1b1b1d 80%);
     padding: 2% 20%;
 }
 
@@ -146,7 +183,7 @@ header .logo-item {
 
 header .search-logout-item span{
     display: block;
-    font-size: 20px;
+    font-size: 110%;
 }
 
 header .logout-item {
@@ -159,7 +196,7 @@ header .logout-item {
 
 header .search-logout-item .logout-item {
     color: #eee;
-    font-size: 13px;
+    font-size: 90%;
 }
 
 .navbar-toggler{
@@ -181,7 +218,7 @@ header .search-logout-item .logout-item {
     display: block;
 }
 
-/** HOME **************************************************************/
+    /** HOME **************************************************************/
 
 .movie-votes {
     color: #f7b436;
@@ -200,7 +237,7 @@ header .search-logout-item .logout-item {
 }
 
 p.members-hook{
-    font-size: 18px;
+    font-size: 150%;
 }
 
 .home-buttons{
@@ -224,9 +261,48 @@ p.members-hook{
     margin-left: 0;
 }
 
+.connexion-btn:hover{
+    background-color: white;
+    color: #f7b436;
+}
+
+    /** CONNEXION **************************************************************/
+
+#inscription-form, #connexion-form {
+    margin: calc(2% + 20px) 0;
+}
+
+    /** INSCRIPTION **************************************************************/
+
+.obligatory-fields {
+    margin-top: 8px;
+}
+
+    /** VALIDATION **************************************************************/
+
+#validation-content {
+    display: flex;
+    flex-direction: column;
+    background: rgba(255,255,255,0.2);
+    border-radius: 10%;
+    padding: 10%;
+
+}
+
+.validation-image {
+    display: block;
+    width: 40%;
+    filter: invert(100%);
+    margin: 10% 0;
+    align-self: center;
+}
+
+#validation-inscription-message{
+    font-size: 120%;
+}
+
     /** FOOTER **************************************************************/
 footer{
-    background: #1b1b1d;
     padding-bottom: 10px;
 }
 
@@ -330,9 +406,9 @@ footer .footer-row .facebook-item, footer .footer-row .pinterest-item, footer .f
 }
 @media (min-width: 992px) {
     body{
-        background-position: center;
-    }
+        background-size: 100% auto;
 
+    }
 }
 
 @media (min-width: 1200px) {
