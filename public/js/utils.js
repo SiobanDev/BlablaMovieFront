@@ -1,3 +1,9 @@
+/**
+ * getDataFromForm transforms the array of the input ids in an object with the value of each input.
+ * @param fieldsList, is an array of the informations sent by the form's request (POST) (format : ['input1Id', 'input2Id', ...])
+ *
+ * @return something like : data = {input1Id: value1, input2Id: value2, ...}
+ */
 function getDataFromForm(fieldsList) {
 
     var data = {};

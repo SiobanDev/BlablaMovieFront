@@ -113,6 +113,11 @@ a{
     color: white;
 }
 
+a:hover{
+    color: white;
+    text-decoration: none;
+}
+
 ul {
     list-style-type: none;
 }
@@ -156,7 +161,6 @@ header, .main-content, footer{
 }
 
 
-
     /** HEADER ****************************************************************/
 header.row{
     display: flex;
@@ -164,6 +168,11 @@ header.row{
 
 header, .nav{
     width: 100%;
+}
+
+.nav li:hover {
+    background: rgba(255,255,255,0.2);
+    border-radius: 10px;
 }
 
 header .search-logout-item{
@@ -299,6 +308,57 @@ p.members-hook{
 
 #validation-inscription-message{
     font-size: 120%;
+}
+
+    /** MOVIES **************************************************************/
+
+.movies-content{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.movie-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+}
+
+.movie-view, .movie-infos{
+
+.movie-order{
+    border-radius: 0 20px 20px 0;
+    position: absolute;
+    top: 5%;
+    left: 0;
+    background: white;
+    box-shadow: black 4px 3px 3px;
+    z-index: 999;
+}
+
+.movie-year{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    top: auto;
+}
+
+.movie-infos{
+    background: white;
+}
+
+.movie-title{
+    color: black;
+    font-weight: bold;
+}
+
+.movie-vote-button{
+    position: absolute;
+    background: rgb(200,200,200);
+    right: 20%;
+    left: auto;
+    top: -50%;
+    border-radius: 20px;
 }
 
     /** FOOTER **************************************************************/

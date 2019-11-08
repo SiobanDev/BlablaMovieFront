@@ -62,7 +62,6 @@ Router.prototype = {
 
             if (((window.location.hash.length > 0) && (route.isActiveRoute(window.location.hash.substr(1))))
                 || (window.location.hash.length === 0 && route.default)) {
-                console.log('bla', route)
 
                 try{
                     pageContent.content = await scope.loadView(route.htmlName);
