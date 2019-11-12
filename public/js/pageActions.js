@@ -1,13 +1,32 @@
+function userConnectedOrNot(connected) {
+    let $logoutItem = document.getElementById('logout-item');
+    let $connexionButton = document.getElementById('connexion-btn');
+    let $inscriptionButton = document.getElementById('inscription-btn');
+    //$movieItemList is an HtmlCollection
+    let $movieItemList = document.getElementsByClassName('movies-item');
+    let $historicalItemList = document.getElementsByClassName('historical-item');
+
+    $logoutItem.style.display = connected ? "block" : "none";
+    $connexionButton.style.display = connected ? "none" : "block";
+    $inscriptionButton.style.display = connected ? "none" : "block";
+
+    //forEarch does not work with HtmlCollections, so I use Array.from
+    Array.from($movieItemList).forEach(($movieItem) => {
+        console.log('okok')
+        $movieItem.style.display = connected ? "block" : "none";
+    });
+
+    Array.from($historicalItemList).forEach(($historicalItem) => {
+        $historicalItem.style.display = connected ? "block" : "none";
+    });
+}
+
 function addToDOM(res, parentElementId) {
     document.getElementById(`${parentElementId}`).innerHTML = res;
 }
 
 function redirectionAction(path) {
-    return new Promise(resolve => resolve(document.location.href=`.${path}`));
-}
-
-function homeAction (res) {
-    addToDOM(res, 'app');
+    document.location.href=`.${path}`;
 }
 
 function inscriptionFormAction () {
@@ -15,7 +34,7 @@ function inscriptionFormAction () {
     const $signUpForm = document.getElementById('inscription-form');
 
     if($signUpForm) {
-        $signUpForm.addEventListener('submit', async (e) => {
+        const callback = async (e) => {
             //I didn't precise method or action in the inscription form, so symfony does something with the event by default that I don't want.
             //To avoid that :
             e.preventDefault();
@@ -23,15 +42,20 @@ function inscriptionFormAction () {
             var user = getDataFromForm(['login', 'password', 'birth_date', 'mail']);
             console.log(user);
 
-            try{
-                await myFetch('http://api.blablamovie.local:8000/user', 'POST', {'Content-type' : 'application/json'}, JSON.stringify(user));
+            try {
+                await myFetch('http://api.blablamovie.local:8000/user', 'POST', {'Content-type': 'application/json'}, JSON.stringify(user));
 
-                await redirectionAction('#validation');
+            $signUpForm.addEventListener('submit', callback);
+            redirectionAction('#validation');
 
             } catch (e) {
                 throw Error(`myFetch in InscriptionFormAction doesn't work ${e}`);
             }
-        })
+        }
+
+
+        $signUpForm.removeEventListener('submit', callback);
+
     } else {
         throw Error('#inscriptionForm undefined');
     }
@@ -42,6 +66,7 @@ function connexionFormAction () {
     const $signInForm = document.getElementById('connexion-form');
 
     if($signInForm) {
+
         $signInForm.addEventListener('submit', async (e) => {
             //I didn't precise method or action in the inscription form, by defalut, the form manages the redirection.
             // However I want to make the redirection myself, so to avoid that :
@@ -49,18 +74,33 @@ function connexionFormAction () {
 
             var connectedUser = getDataFromForm(['mail', 'password']);
 
-            try{
+            try {
                 //JSON.stringify allow to sent the array object connectedUser
-                await myFetch('http://api.blablamovie.local:8000/login', 'POST', {'Content-type' : 'application/json'}, JSON.stringify(connectedUser));
+                await myFetch('http://api.blablamovie.local:8000/login', 'POST', {'Content-type': 'application/json'}, JSON.stringify(connectedUser));
 
-                await redirectionAction('#movies');
+                redirectionAction('#movies');
 
             } catch (e) {
                 throw Error(`myFetch in connexionFormAction doesn't work ${e}`);
             }
-        })
+        });
+
+
     } else {
         throw Error(`#connectionForm undefined`);
+    }
+}
+
+async function deconnexionAction() {
+
+    try {
+        await myFetch('http://api.blablamovie.local:8000/logout');
+
+        redirectionAction('#accueil');
+        userConnectedOrNot(false);
+
+    } catch (e) {
+        throw Error(`myFetch in deconnexionAction doesn't work ${e}`);
     }
 }
 
@@ -70,7 +110,7 @@ async function displayMovies() {
         //moviesData is a string !
         var moviesData = await myFetch('http://api.blablamovie.local:8000/movies', 'GET', {'Content-type': 'application/json'}, null);
 
-        var movieList = JSON.parse(moviesData);
+        var movieList = JSON.parse(moviesData.body);
 
         //I would have written movieData.search if the key search was a variable or does not contain any special character (including caps)
         for(var i = 0; i < movieList["Search"].length; i++) {
@@ -87,47 +127,52 @@ async function displayMovies() {
 }
 
 function movieConstruct(movieData, i) {
-    var movieContent = document.getElementById('movies-content');
+    let movieContent = document.getElementById('all-movies-items');
 
-    var movieItem = document.createElement('div');
+    let movieItem = document.createElement('div');
     movieItem.classList.add('movie-item');
     movieContent.appendChild(movieItem);
 
-    var movieView = document.createElement('div');
+    let movieView = document.createElement('div');
     movieView.classList.add('movie-view');
     movieItem.appendChild(movieView);
 
-    var movieOrder = document.createElement('p');
+    let movieOrder = document.createElement('p');
     movieOrder.classList.add('movie-order');
     movieOrder.innerHTML = i;
     movieView.appendChild(movieOrder);
 
-    var moviePoster = document.createElement('img');
+    let moviePoster = document.createElement('img');
     moviePoster.classList.add('movie-poster');
     moviePoster.setAttribute('src', movieData['Poster']);
     movieView.appendChild(moviePoster);
 
-    var movieYear = document.createElement('p');
+    let movieYear = document.createElement('p');
     movieYear.classList.add('movie-year');
     movieYear.innerHTML = movieData['Year'];
     movieView.appendChild(movieYear);
 
-    var movieInfos = document.createElement('div');
+    let movieInfos = document.createElement('div');
     movieInfos.classList.add('movie-infos');
     movieItem.appendChild(movieInfos);
 
-    var movieTitle = document.createElement('p');
+    let movieTitle = document.createElement('p');
     movieTitle.classList.add('movie-title');
     movieTitle.innerHTML = movieData['Title'];
     movieInfos.appendChild(movieTitle);
 
-    var movieVoteButton = document.createElement('button');
+    let movieVoteButton = document.createElement('button');
     movieVoteButton.classList.add('movie-vote-button');
-    movieVoteButton.innerHTML = "12";
     movieInfos.appendChild(movieVoteButton);
 
-    var movieVoteIcon = document.createElement('i');
+    let movieVoteIcon = document.createElement('i');
     movieVoteIcon.classList.add('vote-icon', 'far', 'fa-hand-point-up');
     movieVoteButton.appendChild(movieVoteIcon);
 
+    let movieVoteNumber = document.createElement('p');
+    movieVoteNumber.classList.add('vote-number');
+    movieVoteNumber.innerHTML = "12";
+    movieVoteButton.appendChild(movieVoteNumber);
+
 }
+

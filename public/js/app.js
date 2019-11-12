@@ -1,16 +1,28 @@
 'use strict';
 
 (function () {
-    function init() {
+    async function init() {
+
         new Router([
 
             //ROUTE ACCUEIL
-            new Route('accueil', 'home.html', (pageTemplate) => {
+            new Route('accueil', 'home.html', async (pageContent) => {
                 try{
-                    homeAction(pageTemplate);
+                    addToDOM(pageContent, 'app');
+
                 } catch (e) {
-                    throw Error(`homeAction failed ${e}`);
+                    throw Error(`addToDom failed ${e}`);
                 };
+
+                try {
+                    await myFetch('http://api.blablamovie.local:8000/users/me');
+                    userConnectedOrNot(true);
+
+                } catch (e) {
+                    console.log(e);
+                    userConnectedOrNot(false);
+                    // throw new Error(JSON.stringify(e));
+                }
 
             }, true),
 
@@ -31,6 +43,21 @@
 
             }),
 
+            //ROUTE DECONNEXION
+            new Route('deconnexion', 'home.html', (pageContent) => {
+                try{
+                    addToDOM(pageContent, 'app');
+                } catch (e) {
+                    throw Error(`addToDom failed ${e}`);
+                };
+
+                try {
+                    deconnexionAction();
+                } catch (e) {
+                    throw Error(`deconnexionAction failed ${e}`);
+                }
+            }),
+
             //ROUTE INSCRIPTION
             new Route('inscription', 'inscriptionForm.html', (pageContent) => {
                 try{
@@ -41,6 +68,7 @@
 
                 try {
                     inscriptionFormAction();
+
 
                 } catch (e) {
                     throw Error(`inscriptionAction ${e}`);
@@ -86,7 +114,8 @@
             //ROUTE ERROR
             new Route('error', 'error.html')
         ]);
+
     }
-    init();
+    init().then();
 
 }());

@@ -78,20 +78,22 @@ Router.prototype = {
     // loadView gets and loads the correct HTML for the active route.
     loadView: async function (htmlName) {
 
-        return new Promise(resolve => {
-            var url = '/public/views/' + htmlName,
-                xhttp = new XMLHttpRequest();
+        await fetch('/public/views/' + htmlName);
 
-            xhttp.onreadystatechange = function () {
-
-                if (this.readyState === 4 && this.status === 200) {
-                    resolve(this.responseText);
-                }
-            }
-
-            xhttp.open('GET', url, true);
-            //Après avoir send la requête, le callback onreadystatechange est automatiquement appelé lors de la réponse du serveur.
-            xhttp.send();
-        });
-    },
+        // return new Promise(resolve => {
+        //     var url = '/public/views/' + htmlName,
+        //         xhttp = new XMLHttpRequest();
+        //
+        //     xhttp.onreadystatechange = function () {
+        //
+        //         if (this.readyState === 4 && this.status === 200) {
+        //             resolve(this.responseText);
+        //         }
+        //     }
+        //
+        //     xhttp.open('GET', url, true);
+        //     //Après avoir send la requête, le callback onreadystatechange est automatiquement appelé lors de la réponse du serveur.
+        //     xhttp.send();
+        // });
+    }
 };
