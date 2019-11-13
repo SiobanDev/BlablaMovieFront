@@ -1,4 +1,19 @@
-function userConnectedOrNot(connected) {
+function showLoader(show, divName) {
+    const $container = document.getElementById(`${divName}`);
+
+    if (show) {
+        const $div = document.createElement('div')
+
+        $container.innerHTML = "";
+        $div.id = 'loader'
+        $div.innerHTML = 'loading...'
+        $container.appendChild($div)
+    }
+}
+
+function checkIfUserIsConnected(connected) {
+
+
     let $logoutItem = document.getElementById('logout-item');
     let $connexionButton = document.getElementById('connexion-btn');
     let $inscriptionButton = document.getElementById('inscription-btn');
@@ -6,19 +21,32 @@ function userConnectedOrNot(connected) {
     let $movieItemList = document.getElementsByClassName('movies-item');
     let $historicalItemList = document.getElementsByClassName('historical-item');
 
-    $logoutItem.style.display = connected ? "block" : "none";
-    $connexionButton.style.display = connected ? "none" : "block";
-    $inscriptionButton.style.display = connected ? "none" : "block";
+    if($logoutItem) {
+        $logoutItem.style.display = connected ? "block" : "none";
+    }
 
-    //forEarch does not work with HtmlCollections, so I use Array.from
-    Array.from($movieItemList).forEach(($movieItem) => {
-        console.log('okok')
-        $movieItem.style.display = connected ? "block" : "none";
-    });
+    if($connexionButton) {
+        $connexionButton.style.display = connected ? "none" : "block";
+    }
 
-    Array.from($historicalItemList).forEach(($historicalItem) => {
-        $historicalItem.style.display = connected ? "block" : "none";
-    });
+    if($inscriptionButton) {
+        $inscriptionButton.style.display = connected ? "none" : "block";
+
+    }
+
+    if($movieItemList) {
+        //forEarch does not work with HtmlCollections, so I use Array.from
+        Array.from($movieItemList).forEach(($movieItem) => {
+            console.log('okok')
+            $movieItem.style.display = connected ? "block" : "none";
+        });
+    }
+
+    if($historicalItemList) {
+        Array.from($historicalItemList).forEach(($historicalItem) => {
+            $historicalItem.style.display = connected ? "block" : "none";
+        });
+    }
 }
 
 function addToDOM(res, parentElementId) {
@@ -29,7 +57,7 @@ function redirectionAction(path) {
     document.location.href=`.${path}`;
 }
 
-function inscriptionFormAction () {
+function doInscriptionStuff () {
 
     const $signUpForm = document.getElementById('inscription-form');
 
@@ -46,13 +74,14 @@ function inscriptionFormAction () {
                 await myFetch('http://api.blablamovie.local:8000/user', 'POST', {'Content-type': 'application/json'}, JSON.stringify(user));
 
             $signUpForm.addEventListener('submit', callback);
-            redirectionAction('#validation');
+            showLoader(true, 'app');
+            checkIfUserIsConnected(true);
+            redirectionAction('#accueil');
 
             } catch (e) {
                 throw Error(`myFetch in InscriptionFormAction doesn't work ${e}`);
             }
         }
-
 
         $signUpForm.removeEventListener('submit', callback);
 
@@ -61,43 +90,35 @@ function inscriptionFormAction () {
     }
 }
 
-function connexionFormAction () {
+async function doConnexionStuff () {
 
-    const $signInForm = document.getElementById('connexion-form');
+    var connectedUser = getDataFromForm(['mail', 'password']);
 
-    if($signInForm) {
+    try {
+        //JSON.stringify allow to sent the array object connectedUser
+        await myFetch('http://api.blablamovie.local:8000/login', 'POST', {'Content-type': 'application/json'}, JSON.stringify(connectedUser));
 
-        $signInForm.addEventListener('submit', async (e) => {
-            //I didn't precise method or action in the inscription form, by defalut, the form manages the redirection.
-            // However I want to make the redirection myself, so to avoid that :
-            e.preventDefault();
+        sessionStorage.setItem('user', await getUser());
 
-            var connectedUser = getDataFromForm(['mail', 'password']);
+        showLoader(true, 'app');
+        checkIfUserIsConnected(true);
+        redirectionAction('#movies');
 
-            try {
-                //JSON.stringify allow to sent the array object connectedUser
-                await myFetch('http://api.blablamovie.local:8000/login', 'POST', {'Content-type': 'application/json'}, JSON.stringify(connectedUser));
-
-                redirectionAction('#movies');
-
-            } catch (e) {
-                throw Error(`myFetch in connexionFormAction doesn't work ${e}`);
-            }
-        });
-
-
-    } else {
-        throw Error(`#connectionForm undefined`);
+    } catch (e) {
+        throw Error(`myFetch in connexionFormAction doesn't work ${e}`);
     }
+
 }
 
-async function deconnexionAction() {
+async function doDeconnexionStuff() {
 
     try {
         await myFetch('http://api.blablamovie.local:8000/logout');
+        sessionStorage.setItem('user', null);
 
+        showLoader(true);
+        checkIfUserIsConnected(false);
         redirectionAction('#accueil');
-        userConnectedOrNot(false);
 
     } catch (e) {
         throw Error(`myFetch in deconnexionAction doesn't work ${e}`);
@@ -105,6 +126,7 @@ async function deconnexionAction() {
 }
 
 async function displayMovies() {
+    showLoader(true, 'all-movies-items');
 
     try {
         //moviesData is a string !
@@ -165,8 +187,9 @@ function movieConstruct(movieData, i) {
     movieVoteButton.classList.add('movie-vote-button');
     movieInfos.appendChild(movieVoteButton);
 
-    let movieVoteIcon = document.createElement('i');
-    movieVoteIcon.classList.add('vote-icon', 'far', 'fa-hand-point-up');
+    let movieVoteIcon = document.createElement('img');
+    movieVoteIcon.classList.add('vote-icon');
+    movieVoteIcon.setAttribute('src', '/public/images/clap-clap.png');
     movieVoteButton.appendChild(movieVoteIcon);
 
     let movieVoteNumber = document.createElement('p');
