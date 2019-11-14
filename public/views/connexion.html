@@ -1,15 +1,19 @@
-<div class="row">
+<div id="form-content" class="row">
     <div class="col-md-8 order-md-1">
         <h4 class="mb-3">Connexion</h4>
-        <form id="connexion-form" class="form-signin" novalidate>
+        <form id="connexion-form" class="needs-validation">
             <div class="mb-3">
                 <label for="mail" class="sr-only">Mail <span class="text-muted">*</span></label>
-                <input type="text" class="form-control" id="mail" name="mail" placeholder="Mail" required  autofocus>
+                <input type="email" class="form-control" id="mail" name="mail" placeholder="Mail" required autofocus>
             </div>
 
             <div class="mb-3">
                 <label for="password" class="sr-only">Password <span class="text-muted">*</span></label>
                 <input type="password" id="password" class="form-control" name="password"  placeholder="Password" required>
+            </div>
+
+            <div class="invalid-feedback">
+                Votre email ou votre mot de passe est erroné.
             </div>
 
             <button id="connexion-button" class="btn btn-primary btn-lg btn-block" type="submit">Connexion</button>

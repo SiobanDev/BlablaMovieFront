@@ -37,21 +37,21 @@ function showTemplate(show) {
                     addToDOM(pageContent, 'app');
 
                 } catch (e) {
-                    throw Error(`addToDom failed ${e}`);
+                    throw new Error(`addToDom failed ${e}`);
                 };
 
                 //myFetch is the first called function, because it's the only one returning a promise.
                 //Then comes userConnected, because it's in the same try{}.
-                //That means that the template is not yet download ! checkIfUserIsConnected uses some elements of the template though.
-                //That's why I need to add conditions in checkIfUserIsConnected to manage the case where some elements are undefined or null.
+                //That means that the template is not yet download ! updateTemplatesForUserStatus uses some elements of the template though.
+                //That's why I need to add conditions in updateTemplatesForUserStatus to manage the case where some elements are undefined or null.
                 showLoader(true)
                 try {
                     await myFetch('http://api.blablamovie.local:8000/users/me');
-                    checkIfUserIsConnected(true);
+                    updateTemplatesForUserStatus(true);
 
                 } catch (e) {
                     console.log(e);
-                    checkIfUserIsConnected(false);
+                    updateTemplatesForUserStatus(false);
                     // throw new Error(JSON.stringify(e));
                 }
                 showLoader(false)
@@ -59,19 +59,20 @@ function showTemplate(show) {
             }, true),
 
             //ROUTE CONNEXION
-            new Route('connexion', 'connexionForm.html', (pageContent) => {
+            new Route('connexion', 'connexion.html', (pageContent) => {
                 try{
                     addToDOM(pageContent, 'app');
 
                 } catch (e) {
-                    throw Error(`addToDom failed ${e}`);
+                    throw new Error(`addToDom failed ${e}`);
                 };
 
                 try {
-                    doConnexionStuff();
+                  //  doConnexionStuff();
 
                 } catch (e) {
-                    throw Error(`connexionAction failed ${e}`);
+                    let eMessage = e.toString();
+                    throw new Error(`connexionAction failed ${eMessage}`);
                 };
 
             }),
@@ -81,22 +82,23 @@ function showTemplate(show) {
                 try{
                     addToDOM(pageContent, 'app');
                 } catch (e) {
-                    throw Error(`addToDom failed ${e}`);
+                    throw new Error(`addToDom failed ${e}`);
                 };
 
                 try {
                     doDeconnexionStuff();
                 } catch (e) {
-                    throw Error(`deconnexionAction failed ${e}`);
+                    let eMessage = e.toString();
+                    throw new Error(`deconnexionAction failed ${eMessage}`);
                 }
             }),
 
             //ROUTE INSCRIPTION
-            new Route('inscription', 'inscriptionForm.html', (pageContent) => {
+            new Route('inscription', 'inscription.html', (pageContent) => {
                 try{
                     addToDOM(pageContent, 'app');
                 } catch (e) {
-                    throw Error(`addToDom ${e}`);
+                    throw new Error(`addToDom ${e}`);
                 };
 
                 try {
@@ -104,7 +106,8 @@ function showTemplate(show) {
 
 
                 } catch (e) {
-                    throw Error(`inscriptionAction ${e}`);
+                    let eMessage = e.toString();
+                    throw new Error(`inscriptionAction ${eMessage}`);
                 };
 
             }),
@@ -115,7 +118,7 @@ function showTemplate(show) {
                     addToDOM(pageContent, 'app');
 
                 } catch (e) {
-                    throw Error(`validation failed ${e}`);
+                    throw new Error(`validation failed ${e}`);
                 };
             }),
 
@@ -124,13 +127,14 @@ function showTemplate(show) {
                 try{
                     addToDOM(pageContent, 'app');
                 } catch (e) {
-                    throw Error(`addToDom ${e}`);
+                    throw new Error(`addToDom ${e}`);
                 };
 
                 try{
                     await displayMovies();
                 } catch (e) {
-                    throw Error(`displayMovies failed ${e}`);
+                    let eMessage = e.toString();
+                    throw new Error(`displayMovies failed ${eMessage}`);
                 };
 
             }),

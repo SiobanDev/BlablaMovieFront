@@ -43,7 +43,7 @@ Router.prototype = {
             this.hasChanged(this, r);
 
         } catch {
-            throw Error('hasChanged error');
+            throw new Error('hasChanged error');
         }
 
     },

@@ -42,39 +42,6 @@ label .text-muted {
     color: white !important;
 }
 
-.form-signin {
-    width: 100%;
-    max-width: 330px;
-}
-
-.form-signin .checkbox {
-    font-weight: 400;
-}
-
-.form-signin .form-control {
-    position: relative;
-    box-sizing: border-box;
-    height: auto;
-    padding: 10px;
-    font-size: 16px;
-}
-
-.form-signin .form-control:focus {
-    z-index: 2;
-}
-
-.form-signin input[type="email"] {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-}
-
-.form-signin input[type="password"] {
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-}
-
 /** PAGE ******************************************************************************************************************************/
 html {
     position: relative;
@@ -107,7 +74,7 @@ body {
     color: #ffffff;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     background-position: top;
     min-height: 100vh;
 }
@@ -166,8 +133,28 @@ header, .main-content, footer{
     align-items: center;
 }
 
+#inscription-form, #connexion-form {
+    margin: calc(2% + 20px) 0;
+}
+
 .movies-item, .historical-item {
     display: none;
+}
+
+#error-content, #signInValidation-popup{
+    display: flex;
+    flex-direction: column;
+    background: rgba(255,255,255,0.2);
+    border-radius: 10%;
+    padding: 10%;
+}
+
+.error-image, .validation-image {
+    display: block;
+    width: 40%;
+    filter: invert(100%);
+    margin: 10% 0;
+    align-self: center;
 }
 
     /** HEADER ****************************************************************/
@@ -254,7 +241,7 @@ p.members-hook{
     font-size: 150%;
 }
 
-.home-buttons{
+#home-buttons{
     display: none;
     flex-direction: column-reverse;
     min-width: 115px;
@@ -283,11 +270,45 @@ p.members-hook{
 
     /** CONNEXION **************************************************************/
 
-#inscription-form, #connexion-form {
-    margin: calc(2% + 20px) 0;
+#connexion-form {
+    width: 100%;
+    max-width: 330px;
 }
 
-    /** INSCRIPTION **************************************************************/
+#connexion-form .checkbox {
+    font-weight: 400;
+}
+
+#connexion-form .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+}
+
+#connexion-form .form-control:focus {
+    z-index: 2;
+}
+
+#connexion-form input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+#connexion-form input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+/*form input:invalid {*/
+/*    background: rgba(220,20,60,0.5);*/
+/*}*/
+
+
+    /** INSCRIPTION ****************************************************/
 
 .obligatory-fields {
     margin-top: 8px;
@@ -295,26 +316,17 @@ p.members-hook{
 
     /** VALIDATION **************************************************************/
 
-#validation-content {
-    display: flex;
-    flex-direction: column;
-    background: rgba(255,255,255,0.2);
-    border-radius: 10%;
-    padding: 10%;
 
+
+#signInValidation-popup {
+    display: none;
+    opacity: 0;
+    transition: opacity 1s linear 0.5s;
 }
 
-.validation-image {
-    display: block;
-    width: 40%;
-    filter: invert(100%);
-    margin: 10% 0;
-    align-self: center;
-}
 
-#validation-inscription-message{
-    font-size: 120%;
-}
+
+
 
     /** MOVIES **************************************************************/
 .movies-content{
@@ -499,6 +511,13 @@ p.members-hook{
     width: auto;
 }
 
+    /** ERROR **************************************************************/
+
+#error-inscription-message{
+    font-size: 120%;
+}
+
+
     /** FOOTER **************************************************************/
 footer{
     padding-bottom: 10px;
@@ -506,6 +525,8 @@ footer{
 
 footer .footer-row {
     border-top: solid 0.5px rgba(192, 192, 192, 0.2);
+    display: flex;
+    flex-direction: column;
 }
 
 footer .footer-row > ul {
@@ -513,6 +534,7 @@ footer .footer-row > ul {
     margin: 5%;
     justify-content: space-between;
     padding: 0;
+    min-height: 120px;
 }
 
 footer .logo-item{
@@ -562,12 +584,12 @@ footer .footer-row .facebook-item, footer .footer-row .pinterest-item, footer .f
         display: none !important;
     }
 
-    .home-buttons{
+    #home-buttons{
         display: flex;
         flex-direction: row;
     }
 
-    .home-buttons #inscription-btn{
+    #home-buttons #inscription-btn{
         margin-left: 12px;
     }
 

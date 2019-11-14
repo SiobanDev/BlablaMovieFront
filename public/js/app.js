@@ -2,142 +2,32 @@
 
 (function () {
     async function init() {
+        try {
+            sessionStorage.setItem('user', await getUser());
 
-        showLoader(true, 'app');
+            new Router([
+                new Route('accueil', 'home.html', doAccueilActions, true),
 
-        sessionStorage.setItem('user', await getUser());
+                new Route('inscription', 'inscription.html', doInscriptionActions),
 
-        new Router([
-            new Route('accueil', 'home.html', (pageContent) => {
-                showLoader(true, 'app');
-                //myFetch is the first called function, because it's the only one returning a promise.
-                //Then comes userConnected, because it's in the same try{}.
-                //That means that the template is not yet download ! checkIfUserIsConnected uses some elements of the template though.
-                //That's why I need to add conditions in checkIfUserIsConnected to manage the case where some elements are undefined or null.
+                new Route('connexion', 'connexion.html', doConnexionActions),
 
-                try{
-                    addToDOM(pageContent, 'app');
+                new Route('deconnexion', 'home.html', doDeconnexionActions),
 
-                    if(sessionStorage.getItem('user') !== "null") {
-                        checkIfUserIsConnected(true);
+                new Route('movies', 'movies.html', doMoviesActions),
 
-                    } else {
-                        checkIfUserIsConnected(false);
-                    }
+                new Route('historical', 'historical.html', doHistoricalActions),
 
-                } catch (e) {
-                    throw Error(`addToDom failed ${e}`);
-                }
+                new Route('contact', 'contact.html'),
 
-            }, true),
+                new Route('infos', 'infos.html'),
 
-            new Route('inscription', 'inscriptionForm.html', (pageContent) => {
-                try {
-                    addToDOM(pageContent, 'app');
-                } catch (e) {
-                    throw Error(`addToDom ${e}`);
-                }
+                new Route('error', 'error.html', doErrorActions)
+            ]);
 
-                try {
-                    doInscriptionStuff();
-
-                } catch (e) {
-                    throw Error(`doInscriptionStuff ${e}`);
-                }
-            }),
-
-            new Route('connexion', 'connexionForm.html', async (pageContent) => {
-
-                if(sessionStorage.getItem('user') === "null") {
-                    try {
-                        addToDOM(pageContent, 'app');
-
-                    } catch (e) {
-                        throw Error(`addToDom failed ${e}`);
-                    };
-
-                    const $signInForm = document.getElementById('connexion-form');
-
-                    if($signInForm) {
-
-                        $signInForm.addEventListener('submit', async (e) => {
-                            e.preventDefault();
-
-                            try {
-                                await doConnexionStuff();
-
-                            } catch (e) {
-                                throw Error(`doConnexionStuff failed ${e}`);
-                            };
-                        });
-
-                    } else {
-                        throw Error(`#connectionForm undefined`);
-                    }
-                }
-            }),
-
-            new Route('deconnexion', 'home.html', async (pageContent) => {
-
-                if(sessionStorage.getItem('user') !== "null") {
-                    try {
-                        addToDOM(pageContent, 'app');
-                    } catch (e) {
-                        throw Error(`addToDom failed ${e}`);
-                    }
-
-                    try {
-                        await doDeconnexionStuff();
-
-                    } catch (e) {
-                        throw Error(`doDeconnexionStuffs failed ${e}`);
-                    }
-
-                } else {
-                    redirectionAction('#error');
-                }
-            }),
-
-            new Route('movies', 'movies.html', async (pageContent) => {
-
-                if(sessionStorage.getItem('user') !== "null") {
-                    try {
-                        addToDOM(pageContent, 'app');
-                    } catch (e) {
-                        throw Error(`addToDom ${e}`);
-                    }
-
-                    try {
-                        await displayMovies();
-                    } catch (e) {
-                        throw Error(`displayMovies failed ${e}`);
-                    }
-                } else {
-                    redirectionAction('#error');
-                }
-            }),
-
-            new Route('historical', 'historical.html', (pageContent) => {
-
-                if(sessionStorage.getItem('user') !== "null") {
-                    try {
-                        addToDOM(pageContent, 'app');
-                    } catch (e) {
-                        throw Error(`addToDom failed ${e}`);
-                    }
-
-                } else {
-                    redirectionAction('#error');
-                }
-
-            }),
-
-            new Route('contact', 'contact.html'),
-
-            new Route('infos', 'infos.html'),
-
-            new Route('error', 'error.html')
-        ]);
+        } catch (e) {
+            console.error(e);
+        }
     }
 
     init().then();
