@@ -4,32 +4,35 @@ function doInscriptionActions(pageContent) {
         replaceContent(pageContent, 'app');
 
         const $signInForm = document.getElementById('inscription-form');
+        var submitButton = document.getElementById('connexion-button');
+        var allInputsValidated = undefined;
 
-        $signInForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            // formValidation(false, "inscription");
-
-            var user = getFormData(['login', 'password', 'birth_date', 'mail']);
-
-            try {
-                await signIn(user);
-                formValidation(true, "inscription");
-
-            } catch (error) {
-                console.log(error.status);
-
-                if (error.status === 403) {
-                    const $signUpForm = document.getElementById('inscription-form');
-
-                    console.log('nooo invalidate message')
-                } else {
-                    throw new Error(error.body);
-
-                }
-            }
+        submitButton.addEventListener('click', (e) => {
+            allInputsValidated = getFillingStateOfInputs('inscription');
         });
 
+        if(allInputsValidated) {
+            $signInForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                // feedbackAfterSubmitForm(false, "inscription");
+
+                var user = getFormData(['login', 'password', 'birth_date', 'mail']);
+                let $form = document.getElementById('form-content');
+
+                try {
+                    await signIn(user);
+                    feedbackAfterSubmitForm(1, $form);
+
+                } catch (error) {
+                    if (error.message === "403") {
+                        feedbackAfterSubmitForm(3, $form);
+                    } else {
+                        throw new Error(error);
+                    }
+                }
+            });
+        }
     } else {
-        console.log('edfsdfsdf')
+        throw new Error("Problème de sessionsStorage");
     }
 }

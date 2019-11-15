@@ -42,26 +42,34 @@ function updateTemplatesForUserStatus(userIsConnected) {
     }
 }
 
-
 async function signIn(user) {
 
-    await myFetch('http://api.blablamovie.local:8000/user', 'POST', {'Content-type': 'application/json'}, JSON.stringify(user));
+    try {
+        await myFetch('http://api.blablamovie.local:8000/user', 'POST', {'Content-type': 'application/json'}, JSON.stringify(user));
 
-    showLoader(true, 'app');
-    updateTemplatesForUserStatus(true);
-    redirectionAction('#accueil');
+        showLoader(true, 'app');
+        updateTemplatesForUserStatus(true);
+        redirectionAction('#accueil');
+
+    } catch (e) {
+        throw new Error(e.status);
+    }
 }
 
 async function connect(userData) {
+    try {
+        //JSON.stringify allow to sent the array object connectedUser
+        await myFetch('http://api.blablamovie.local:8000/login', 'POST', {'Content-type': 'application/json'}, JSON.stringify(userData));
 
-    //JSON.stringify allow to sent the array object connectedUser
-    await myFetch('http://api.blablamovie.local:8000/login', 'POST', {'Content-type': 'application/json'}, JSON.stringify(userData));
+        sessionStorage.setItem('user', await getUser());
+        showLoader(true, 'app');
+        updateTemplatesForUserStatus(true);
 
-    sessionStorage.setItem('user', await getUser());
-    showLoader(true, 'app');
-    updateTemplatesForUserStatus(true);
+        redirectionAction('#movies');
 
-    redirectionAction('#movies');
+    } catch (e) {
+        throw new Error(e.status);
+    }
 }
 
 async function signOut() {

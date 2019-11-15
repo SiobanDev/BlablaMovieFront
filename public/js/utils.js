@@ -21,11 +21,20 @@ function getFormData(fieldsList) {
 function replaceContent(pageContent, elementId) {
     try {
         document.getElementById(elementId).innerHTML = pageContent;
+
     } catch (e) {
         throw new Error(`addToDom ${e}`);
     }
 }
 
 function redirectionAction(path) {
-    document.location.href=`.${path}`;
+    return document.location.href=`.${path}`;
+}
+
+function closePopUp(div, container) {
+    if (div) {
+        container.remove(div);
+        return true;
+    }
+    return false;
 }

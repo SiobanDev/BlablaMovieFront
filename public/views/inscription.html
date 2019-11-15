@@ -1,39 +1,56 @@
 <div id="form-content" class="row">
     <div class="col-md-8 order-md-1">
         <h4 class="mb-3">Inscription</h4>
-        <form id="inscription-form" class="needs-validation">
+        <form method="POST" id="inscription-form" class="needs-validation">
             <div class="mb-3">
                 <label for="login">Login <span class="text-muted">*</span></label>
-                <input type="text" class="form-control" id="login" name="login" placeholder="Login" required>
-                <div class="invalid-feedback">
-                    Un pseudo est requis et doit être compris entre 3 et 18 caractères alphanumériques.
+
+                <div id="invalid-empty-login-feedback" class="invalid-feedback">
+                    La longueur de votre login doit être comprise entre 3 et 18 caractères.
                 </div>
+                <div id="invalid-regex-login-feedback" class="invalid-feedback">
+                    Votre login doit contenir uniquement des caractères alphanumériques.
+                </div>
+                <div id="invalid-size-login-feedback" class="invalid-feedback">
+                    La longueur de votre login doit être comprise entre 3 et 18 caractères.
+                </div>
+
+                <input type="text" class="form-control" id="login" name="login" placeholder="Login" onBlur="validateLogin()">
             </div>
 
             <div class="mb-3">
                 <label for="mail">Email <span class="text-muted">*</span></label>
-                <input type="email" class="form-control" id="mail" name="mail" placeholder="you@example.com" required>
-                <div class="invalid-feedback">
-                    Votre email n'est pas valide.
+
+                <div id="invalid-email-login-feedback" class="invalid-feedback">
+                    Votre email n'est pas au bon format.
                 </div>
+
+                <input type="email" class="form-control" id="mail" name="mail" placeholder="you@example.com" onBlur="validateMail()">
             </div>
 
             <div class="mb-3">
                 <label for="password" class="sr-only">Password <span class="text-muted">*</span></label>
-                <input type="password" id="password" class="form-control" name="password"  placeholder="Password" required>
-                <div class="invalid-feedback">
-                    Votre mot de passe doit avoir minimum 12 caractères, parmi les caractères spéciaux, les minuscules, les majuscules et les chiffres.
+
+                <div id="invalid-size-pwd-feedback" class="invalid-feedback">
+                    La longueur de votre mot de passe doit être au minimum de 12 caractères.
                 </div>
+
+                <input type="password" id="password" class="form-control" name="password" placeholder="Password" onBlur="validatePassword()">
             </div>
 
             <div class="mb-3">
                 <label>Date of Birth <span class="text-muted">*</span></label>
-                <input type="date" class="form-control" id="birth_date" name="birth_date" placeholder="Date of Birth" required>
-            </div>
-            <div class="invalid-feedback">
-                Votre date de naissance est requise.
+
+                <div id="invalid-age-feedback" class="invalid-feedback">
+                    Vous devez avoir plus de 15 ans pour vous inscrire.
+                </div>
+
+                <input type="date" class="form-control" id="birth_date" name="birth_date" placeholder="Date of Birth" onKeyUp="validateAge()" >
             </div>
 
+            <div id="invalid-empty-feedback" class="invalid-feedback">
+                Certains champs requis sont vides.
+            </div>
             <button id="inscription-button" class="btn btn-primary btn-lg btn-block" type="submit">Inscription</button>
 
             <p class="obligatory-fields">Les champs avec une * sont obligatoires.</p>
