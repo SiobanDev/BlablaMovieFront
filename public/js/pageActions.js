@@ -59,9 +59,23 @@ async function signIn(user) {
 async function connect(userData) {
     try {
         //JSON.stringify allow to sent the array object connectedUser
-        await myFetch('http://api.blablamovie.local:8000/login', 'POST', {'Content-type': 'application/json'}, JSON.stringify(userData));
+        // let response = await myFetch('http://api.blablamovie.local:8000/login', 'POST', {'Content-type': 'application/json'}, JSON.stringify(userData));
 
-        sessionStorage.setItem('user', await getUser());
+        let response = await fetch('http://api.blablamovie.local:8000/login', {
+            method: 'post',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify(userData)
+        });
+
+        let connectedUser = await response.json();
+
+        console.log('response', response);
+        console.log('connectedUser', connectedUser);
+
+        sessionStorage.setItem('user', JSON.stringify(connectedUser));
         showLoader(true, 'app');
         updateTemplatesForUserStatus(true);
 

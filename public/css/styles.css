@@ -1,10 +1,10 @@
 /** BOOTSTRAP **************************************************************************************************************************/
-.row{
+.row {
     margin: 0;
     display: block;
 }
 
-.container-fluid{
+.container-fluid {
     padding-right: 0;
     padding-left: 0;
     margin-right: 0;
@@ -49,7 +49,7 @@ body label {
 body .invalid-feedback {
     margin-bottom: .5rem;
     font-weight: 400;
-    background: rgba(220,220,220,0.6);
+    background: rgba(220, 220, 220, 0.6);
     border-radius: 7px;
     font-size: 90%;
     padding: 8px;
@@ -69,12 +69,12 @@ body * {
     left: 0;
 }
 
-html, body{
+html, body {
     width: 100%;
 }
 
 body {
-    padding : 0;
+    padding: 0;
     margin: 0;
     position: absolute;
     top: 0;
@@ -93,15 +93,15 @@ body {
 }
 
 
-p{
+p {
     margin: 0;
 }
 
-a{
+a {
     color: white;
 }
 
-a:hover{
+a:hover {
     color: white;
     text-decoration: none;
 }
@@ -110,14 +110,14 @@ ul {
     list-style-type: none;
 }
 
-body .main-content{
+body .main-content {
     display: flex;
     flex-direction: column;
     padding: 2% 20%;
 }
 
 
-.lign1{
+.lign1 {
     width: 4px;
     height: 80%;
     border-radius: 2px;
@@ -128,15 +128,15 @@ body .main-content{
     bottom: 10%;
 }
 
-.bold-style{
+.bold-style {
     font-weight: 700;
 }
 
-header, .main-content, footer{
+header, .main-content, footer {
     padding: 5%;
 }
 
-.navbar{
+.navbar {
     display: flex;
     align-items: center;
 }
@@ -154,21 +154,21 @@ header, .main-content, footer{
     display: none;
 }
 
-    /** HEADER ****************************************************************/
-header.row{
+/** HEADER ****************************************************************/
+header.row {
     display: flex;
 }
 
-header, .nav{
+header, .nav {
     width: 100%;
 }
 
 .nav li:hover {
-    background: rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
 }
 
-header .search-logout-item{
+header .search-logout-item {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -183,7 +183,7 @@ header .logo-item {
     margin-right: 30px;
 }
 
-header .search-logout-item span{
+header .search-logout-item span {
     display: block;
     font-size: 110%;
 }
@@ -201,7 +201,7 @@ header .search-logout-item #logout-item {
     font-size: 90%;
 }
 
-.navbar-toggler{
+.navbar-toggler {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -210,7 +210,7 @@ header .search-logout-item #logout-item {
     border: none;
 }
 
-.navbar-toggler-icon{
+.navbar-toggler-icon {
     background: url("../images/ic-menu-mobile.png") no-repeat center center;
     background-size: 100% 100%;
     width: 2em;
@@ -220,25 +220,25 @@ header .search-logout-item #logout-item {
     display: block;
 }
 
-    /** HOME **************************************************************/
+/** HOME **************************************************************/
 
 .movie-votes {
     color: #f7b436;
 }
 
-.main-hook p{
+.main-hook p {
     font-size: 26px;
 }
 
-.first-lines-hook, .last-lines, .members-hook{
+.first-lines-hook, .last-lines, .members-hook {
     margin-left: 16px;
 }
 
-p.members-hook{
+p.members-hook {
     font-size: 150%;
 }
 
-#home-buttons{
+#home-buttons {
     display: none;
     flex-direction: column-reverse;
     min-width: 115px;
@@ -246,7 +246,7 @@ p.members-hook{
     margin-left: 16px;
 }
 
-#connexion-btn, #inscription-btn{
+#connexion-btn, #inscription-btn {
     background-color: transparent;
     color: #f7b436;
     border: solid 2px #f7b436;
@@ -254,18 +254,18 @@ p.members-hook{
     margin: 20px 0;
 }
 
-#inscription-btn{
+#inscription-btn {
     background-color: #f7b436;
     color: white;
     margin-left: 0;
 }
 
-#connexion-btn:hover{
+#connexion-btn:hover {
     background-color: white;
     color: #f7b436;
 }
 
-    /** CONNEXION **************************************************************/
+/** CONNEXION **************************************************************/
 
 #connexion-form {
     width: 100%;
@@ -305,13 +305,13 @@ p.members-hook{
 /*}*/
 
 
-    /** INSCRIPTION ****************************************************/
+/** INSCRIPTION ****************************************************/
 
 .obligatory-fields {
     margin-top: 8px;
 }
 
-    /** FEEDBACK **************************************************************/
+/** FEEDBACK **************************************************************/
 #popup-container {
     display: none;
     opacity: 0;
@@ -329,7 +329,7 @@ p.members-hook{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background: rgba(247,80,80,0.8);
+    background: rgba(247, 80, 80, 0.8);
     border-radius: 10%;
     padding: 10%;
     width: 66%;
@@ -350,7 +350,7 @@ p.members-hook{
     align-self: center;
 }
 
-#feedback-popup  .fa-times {
+#feedback-popup .fa-times {
     align-self: flex-end;
     position: absolute;
     right: 10%;
@@ -358,17 +358,17 @@ p.members-hook{
     top: 10%;
 }
 
-#feedback-popup  .fa-times:hover {
+#feedback-popup .fa-times:hover {
     background: black;
 }
 
-    /** MOVIES **************************************************************/
-.movies-content{
+/** MOVIES **************************************************************/
+.movies-content {
     display: flex;
     flex-direction: column;
 }
 
-.movies-hook{
+.movies-hook {
     display: flex;
     flex-wrap: wrap;
 }
@@ -380,21 +380,21 @@ p.members-hook{
     height: 200px;
 }
 
-.movies-hook .lines-hook{
+.movies-hook .lines-hook {
     font-weight: 200;
     font-size: 150%;
     margin-left: 16px;
 }
 
-.movies-hook .best-week-movie{
+.movies-hook .best-week-movie {
 
 }
 
-.movies-hook .members-hook{
+.movies-hook .members-hook {
     font-size: 100%;
 }
 
-.movies-hook .members-number{
+.movies-hook .members-number {
     color: #f7b436;
 }
 
@@ -418,7 +418,7 @@ p.members-hook{
     font-weight: 100;
 }
 
-.gold-form{
+.gold-form {
     position: absolute;
     width: 120%;
     right: 0;
@@ -442,7 +442,7 @@ p.members-hook{
     font-size: 200%;
     color: #1b1b1d;
     text-align: center;
-    background: rgba(200,200,200,0.5);
+    background: rgba(200, 200, 200, 0.5);
     border-radius: 5px;
     width: 45%;
 }
@@ -451,7 +451,7 @@ p.members-hook{
     width: 100%;
 }
 
-#all-movies-items{
+#all-movies-items {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -477,12 +477,12 @@ p.members-hook{
 }
 
 
-.movie-order{
+.movie-order {
     border-radius: 0 20px 20px 0;
     position: absolute;
     top: 5%;
     background: white;
-    box-shadow: rgb(80,80,80) 0px 1px 7px;
+    box-shadow: rgb(80, 80, 80) 0px 1px 7px;
     z-index: 999;
     height: 40px;
     color: #1b1b1d;
@@ -499,14 +499,14 @@ p.members-hook{
     width: 100%;
 }
 
-.movie-year{
+.movie-year {
     position: absolute;
     bottom: 20px;
     left: 20px;
     top: auto;
 }
 
-.movie-infos{
+.movie-infos {
     background: white;
     border-radius: 0 0 10px 10px;
     padding: 25px 5% 10% 5%;
@@ -514,16 +514,16 @@ p.members-hook{
     align-items: flex-end;
 }
 
-.movie-title{
+.movie-title {
     color: #1b1b1d;
     font-weight: bold;
     width: 100%;
     font-size: 110%;
 }
 
-.movie-vote-button{
+.movie-vote-button {
     position: absolute;
-    background: rgb(240,240,240);
+    background: rgb(240, 240, 240);
     right: 10%;
     left: auto;
     top: -17.5px;
@@ -541,15 +541,28 @@ p.members-hook{
     width: auto;
 }
 
-    /** ERROR **************************************************************/
+/** ERROR **************************************************************/
+#error-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(220, 220, 220, 0.6);
+    border-radius: 7px;
+    padding: 5%;
+}
 
-#error-inscription-message{
+#error-inscription-message {
     font-size: 120%;
 }
 
+.error-image {
+    width: 50%;
+}
 
-    /** FOOTER **************************************************************/
-footer{
+
+/** FOOTER **************************************************************/
+footer {
     padding-bottom: 10px;
 }
 
@@ -567,15 +580,15 @@ footer .footer-row > ul {
     min-height: 120px;
 }
 
-footer .logo-item{
+footer .logo-item {
     height: 50%;
 }
 
-footer .footer-links, footer .medias-item{
+footer .footer-links, footer .medias-item {
     display: flex;
 }
 
-footer .footer-links{
+footer .footer-links {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -614,12 +627,12 @@ footer .footer-row .facebook-item, footer .footer-row .pinterest-item, footer .f
         display: none !important;
     }
 
-    #home-buttons{
+    #home-buttons {
         display: flex;
         flex-direction: row;
     }
 
-    #home-buttons #inscription-btn{
+    #home-buttons #inscription-btn {
         margin-left: 12px;
     }
 
@@ -631,11 +644,11 @@ footer .footer-row .facebook-item, footer .footer-row .pinterest-item, footer .f
         margin: 2% 0;
     }
 
-    footer .logo-item{
+    footer .logo-item {
         margin-right: 2%;
     }
 
-    footer .footer-links{
+    footer .footer-links {
         display: flex;
         flex-direction: row;
     }
@@ -654,8 +667,9 @@ footer .footer-row .facebook-item, footer .footer-row .pinterest-item, footer .f
     }
 
 }
+
 @media (min-width: 992px) {
-    body{
+    body {
         background-size: 100% auto;
 
     }
@@ -667,7 +681,7 @@ footer .footer-row .facebook-item, footer .footer-row .pinterest-item, footer .f
 
 @media (min-width: 1200px) {
 
-    header, .main-content, footer{
+    header, .main-content, footer {
         padding: 0 20%;
     }
 }
