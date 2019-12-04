@@ -3,7 +3,7 @@
 (function () {
     async function init() {
         try {
-            sessionStorage.setItem('user', await getUser());
+            updateTemplatesWhetherUserConnectedOrNot();
 
             new Router([
                 new Route('accueil', 'home.html', doAccueilActions, true),

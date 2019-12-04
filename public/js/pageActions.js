@@ -1,54 +1,78 @@
-function showLoader(show, divName) {
-    const $container = document.getElementById(`${divName}`);
+function showLoader(show, divId) {
+    const $container = document.getElementById(`${divId}`);
 
-    if (show && $container) {
-        const $div = document.createElement('div')
+    if ($container) {
+        if (show) {
+            const $loaderContainer = document.createElement('div');
+            $loaderContainer.id = 'loader';
+            $loaderContainer.classList.add('spinner-grow', 'text-light');
+            $loaderContainer.role = "status";
 
-        $container.innerHTML = "";
-        $div.id = 'loader'
-        $div.innerHTML = 'loading...'
-        $container.appendChild($div)
+            const $loaderText = document.createElement('span');
+            $loaderText.classList.add('sr-only');
+            $loaderText.innerHTML = 'loading...';
+
+            $loaderContainer.appendChild($loaderText);
+            $container.appendChild($loaderContainer);
+
+        } else {
+            const $div = document.querySelector('#loader');
+            if ($div) {
+                $container.removeChild($div)
+            }
+            showTemplate(true)
+        }
     }
 }
 
-function updateTemplatesForUserStatus(userIsConnected) {
+function updateTemplatesWhetherUserConnectedOrNot() {
+    let $mainHook = document.getElementById("main-hook");
 
-    let $logoutItem = document.getElementById('logout-item');
-    let $homeButton = document.getElementById('home-buttons');
-    //$movieItemList is an HtmlCollection
-    let $movieItemList = document.getElementsByClassName('movies-item');
-    let $historicalItemList = document.getElementsByClassName('historical-item');
+    if ($mainHook) {
+        if (sessionStorage.getItem('user') === null) {
 
-    if ($logoutItem) {
-        $logoutItem.style.display = userIsConnected ? "block" : "none";
-    }
+            try {
+                //Add nav items Movies and Historical
+                navItemsConstruct();
+                homeButtonsConstruct();
 
-    if ($homeButton) {
-        $homeButton.style.display = userIsConnected ? "none" : "flex";
-    }
+                removeDomElement('logout-item', null);
+            } catch (e) {
+                throw new Error(e);
+            }
+        } else {
+            try {
+                removeDomElement("home-buttons", null);
 
-    if ($movieItemList) {
-        //forEarch does not work with HtmlCollections, so I use Array.from
-        Array.from($movieItemList).forEach(($movieItem) => {
-            console.log('okok')
-            $movieItem.style.display = userIsConnected ? "block" : "none";
-        });
-    }
+                removeDomElement("movies-item", null);
 
-    if ($historicalItemList) {
-        Array.from($historicalItemList).forEach(($historicalItem) => {
-            $historicalItem.style.display = userIsConnected ? "block" : "none";
-        });
+                removeDomElement("historical-item", null);
+
+                addDomElement(
+                    'logout-item',
+                    'a',
+                    [],
+                    {
+                        href: '#deconnexion'
+                    },
+                    "search-logout-item",
+                    null
+                );
+
+            } catch (e) {
+                throw new Error(e);
+            }
+        }
     }
 }
 
 async function signIn(user) {
 
     try {
-        await myFetch('http://api.blablamovie.local:8000/user', 'POST', {'Content-type': 'application/json'}, JSON.stringify(user));
+        await myFetch(apiInscriptionUrl, 'POST', {'Content-type': 'application/json'}, JSON.stringify(user));
 
         showLoader(true, 'app');
-        updateTemplatesForUserStatus(true);
+        updateTemplatesWhetherUserConnectedOrNot();
         redirectionAction('#accueil');
 
     } catch (e) {
@@ -58,10 +82,7 @@ async function signIn(user) {
 
 async function connect(userData) {
     try {
-        //JSON.stringify allow to sent the array object connectedUser
-        // let response = await myFetch('http://api.blablamovie.local:8000/login', 'POST', {'Content-type': 'application/json'}, JSON.stringify(userData));
-
-        let response = await fetch('http://api.blablamovie.local:8000/login', {
+        let apiConnexionResponse = await fetch(apiConnexionUrl, {
             method: 'post',
             headers: {
                 'Content-type': 'application/json'
@@ -70,16 +91,16 @@ async function connect(userData) {
             body: JSON.stringify(userData)
         });
 
-        let connectedUser = await response.json();
+        if (apiConnexionResponse.status === 200) {
+            let token = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 
-        console.log('response', response);
-        console.log('connectedUser', connectedUser);
+            sessionStorage.setItem('user', token);
+            showLoader(true, 'app');
+            updateTemplatesWhetherUserConnectedOrNot();
 
-        sessionStorage.setItem('user', JSON.stringify(connectedUser));
-        showLoader(true, 'app');
-        updateTemplatesForUserStatus(true);
+            redirectionAction('#movies');
+        }
 
-        redirectionAction('#movies');
 
     } catch (e) {
         throw new Error(e.status);
@@ -88,26 +109,40 @@ async function connect(userData) {
 
 async function signOut() {
 
-    await myFetch('http://api.blablamovie.local:8000/logout');
+    await fetch(apiSignOutUrl);
+
     sessionStorage.setItem('user', null);
 
-    // redirectionAction('#accueil');
+    redirectionAction('#accueil');
 }
 
 async function displayMovies() {
     showLoader(true, 'all-movies-items');
 
     try {
-        //moviesData is a string !
-        var moviesData = await myFetch('http://api.blablamovie.local:8000/movies', 'GET', {'Content-type': 'application/json'}, null);
+        //moviesData with MyFetchis a string !
+        // var moviesData = await myFetch(apiMoviesUrl, 'GET', {'Content-type': 'application/json'}, null);
+        var moviesData = await fetch(
+            apiMoviesUrl,
+            {
+                method: 'GET',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                credentials: 'include'
+            });
 
-        var movieList = JSON.parse(moviesData.body);
+        // var movieList = JSON.parse(moviesData.body);
+        var movieList = await moviesData.json();
+        var movieListObject = JSON.parse(movieList);
+        console.log('movieListObject', movieListObject);
+
         let movieContent = document.getElementById('all-movies-items');
 
         //I would have written movieData.search if the key search was a variable or does not contain any special character (including caps)
-        for (var i = 0; i < movieList["Search"].length; i++) {
+        for (var i = 0; i < movieListObject["Search"].length; i++) {
 
-            var movie = movieList["Search"][i];
+            var movie = movieListObject["Search"][i];
             const movieItem = movieConstruct(movie, i);
 
             if (movieContent) {

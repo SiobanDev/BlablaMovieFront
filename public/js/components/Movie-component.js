@@ -46,5 +46,4 @@ function movieConstruct(movieData, index) {
     movieVoteButton.appendChild(movieVoteNumber);
 
     return movieItem;
-
 }

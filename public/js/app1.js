@@ -1,15 +1,24 @@
 'use strict';
 
 function showLoader(show) {
-    const $container = document.querySelector('#app')
+    const $container = document.querySelector('#app');
     if (show) {
-        showTemplate(false)
-        const $div = document.createElement('div')
-        $div.id = 'loader'
-        $div.innerHTML = 'loading...'
-        $container.appendChild($div)
+        showTemplate(false);
+
+        const $loaderContainer = document.createElement('div');
+        $loaderContainer.id = 'loader';
+        $loaderContainer.classList.add('spinner-grow', 'text-light');
+        $loaderContainer.role = "status";
+
+        const $loaderText = document.createElement('span');
+        $loaderText.classList.add('sr-only');
+        $loaderText.innerHTML = 'loading...';
+
+        $loaderContainer.appendChild($loaderText);
+        $container.appendChild($loaderContainer);
+
     } else {
-        const $div = document.querySelector('#loader')
+        const $div = document.querySelector('#loader');
         if ($div) {
             $container.removeChild($div)
         }
@@ -19,7 +28,7 @@ function showLoader(show) {
 }
 
 function showTemplate(show) {
-    if(document.querySelector('#app > div')) {
+    if (document.querySelector('#app > div')) {
         document.querySelector('#app > div').style.display = show ? 'flex' : 'none'
     }
 }
@@ -33,25 +42,26 @@ function showTemplate(show) {
 
             //ROUTE ACCUEIL
             new Route('accueil', 'home.html', async (pageContent) => {
-                try{
+                try {
                     addToDOM(pageContent, 'app');
 
                 } catch (e) {
                     throw new Error(`addToDom failed ${e}`);
-                };
+                }
+                ;
 
                 //myFetch is the first called function, because it's the only one returning a promise.
                 //Then comes userConnected, because it's in the same try{}.
-                //That means that the template is not yet download ! updateTemplatesForUserStatus uses some elements of the template though.
-                //That's why I need to add conditions in updateTemplatesForUserStatus to manage the case where some elements are undefined or null.
+                //That means that the template is not yet download ! updateTemplatesWhetherUserConnectedOrNot uses some elements of the template though.
+                //That's why I need to add conditions in updateTemplatesWhetherUserConnectedOrNot to manage the case where some elements are undefined or null.
                 showLoader(true)
                 try {
                     await myFetch('http://api.blablamovie.local:8000/users/me');
-                    updateTemplatesForUserStatus(true);
+                    updateTemplatesWhetherUserConnectedOrNot(true);
 
                 } catch (e) {
                     console.log(e);
-                    updateTemplatesForUserStatus(false);
+                    updateTemplatesWhetherUserConnectedOrNot(false);
                     // throw new Error(JSON.stringify(e));
                 }
                 showLoader(false)
@@ -60,30 +70,33 @@ function showTemplate(show) {
 
             //ROUTE CONNEXION
             new Route('connexion', 'connexion.html', (pageContent) => {
-                try{
+                try {
                     addToDOM(pageContent, 'app');
 
                 } catch (e) {
                     throw new Error(`addToDom failed ${e}`);
-                };
+                }
+                ;
 
                 try {
-                  //  doConnexionStuff();
+                    //  doConnexionStuff();
 
                 } catch (e) {
                     let eMessage = e.toString();
                     throw new Error(`connexionAction failed ${eMessage}`);
-                };
+                }
+                ;
 
             }),
 
             //ROUTE DECONNEXION
             new Route('deconnexion', 'home.html', (pageContent) => {
-                try{
+                try {
                     addToDOM(pageContent, 'app');
                 } catch (e) {
                     throw new Error(`addToDom failed ${e}`);
-                };
+                }
+                ;
 
                 try {
                     doDeconnexionStuff();
@@ -95,11 +108,12 @@ function showTemplate(show) {
 
             //ROUTE INSCRIPTION
             new Route('inscription', 'inscription.html', (pageContent) => {
-                try{
+                try {
                     addToDOM(pageContent, 'app');
                 } catch (e) {
                     throw new Error(`addToDom ${e}`);
-                };
+                }
+                ;
 
                 try {
                     doInscriptionStuff();
@@ -108,34 +122,38 @@ function showTemplate(show) {
                 } catch (e) {
                     let eMessage = e.toString();
                     throw new Error(`inscriptionAction ${eMessage}`);
-                };
+                }
+                ;
 
             }),
 
             //ROUTE VALIDATION
             new Route('validation', 'validation.html', (pageContent) => {
-                try{
+                try {
                     addToDOM(pageContent, 'app');
 
                 } catch (e) {
                     throw new Error(`validation failed ${e}`);
-                };
+                }
+                ;
             }),
 
             //ROUTE MOVIES
             new Route('movies', 'movies.html', async (pageContent) => {
-                try{
+                try {
                     addToDOM(pageContent, 'app');
                 } catch (e) {
                     throw new Error(`addToDom ${e}`);
-                };
+                }
+                ;
 
-                try{
+                try {
                     await displayMovies();
                 } catch (e) {
                     let eMessage = e.toString();
                     throw new Error(`displayMovies failed ${eMessage}`);
-                };
+                }
+                ;
 
             }),
 
@@ -153,6 +171,7 @@ function showTemplate(show) {
         ]);
 
     }
+
     init().then();
 
 }());

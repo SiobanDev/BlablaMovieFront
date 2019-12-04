@@ -30,31 +30,31 @@
 
     <!-- Navigation Menu -->
     <nav class="navbar navbar-expand-sm">
-        <ul id="header-navigation" class="nav navbar-nav collapse navbar-collapse row">
-            <li class="propos-item nav-item col-s-1">
-                <a href="#infos">A propos</a>
-            </li>
-
-            <li class="movies-item nav-item col-s-1">
-                <a href="#movies">Films</a>
-            </li>
-
-            <li class="historical-item nav-item col-s-1">
-                <a href="#historical">Historique</a>
-            </li>
-
-            <li class="contact-item nav-item col-s-1">
-                <a href="#contact">Contact</a>
-            </li>
-        </ul>
-
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#header-navigation"
                 aria-controls="header-navigation" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
+        <ul id="header-navigation" class="nav navbar-nav collapse navbar-collapse row">
+            <li id="propos-item" class="nav-item col-s-1">
+                <a href="#infos">A propos</a>
+            </li>
+
+            <li id="movies-item" class="nav-item col-s-1">
+                <a href="#movies">Films</a>
+            </li>
+
+            <li id="historical-item" class="nav-item col-s-1">
+                <a href="#historical">Historique</a>
+            </li>
+
+            <li id="contact-item" class="nav-item col-s-1">
+                <a href="#contact">Contact</a>
+            </li>
+        </ul>
     </nav>
 
-    <div class="search-logout-item nav-item col-s-1">
+    <div id="search-logout-item" class="nav-item col-s-1">
         <span class="fas fa-search"></span>
         <a id="logout-item" href="#deconnexion">Déconnexion</a>
     </div>
@@ -114,9 +114,14 @@
         </ul>
     </div>
 </footer>
+<script src="public/js/domService.js"></script>
+<script src="public/js/constants.js"></script>
 <script src="public/js/http.js"></script>
 <script src="public/js/utils.js"></script>
 <script src="public/js/form.js"></script>
+<script src="public/js/components/NavItems-component.js"></script>
+<script src="public/js/components/HomeButtons-component.js"></script>
+<script src="public/js/components/Movie-component.js"></script>
 <script src="public/js/routes/accueil.js"></script>
 <script src="public/js/routes/connexion.js"></script>
 <script src="public/js/routes/deconnexion.js"></script>

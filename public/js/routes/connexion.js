@@ -1,6 +1,6 @@
 function doConnexionActions(pageContent) {
 
-    if (sessionStorage.getItem('user') === "null") {
+    if (sessionStorage.getItem('user') === null) {
         replaceContent(pageContent, 'app');
 
         const $signInForm = document.getElementById('connexion-form');
