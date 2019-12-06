@@ -1,38 +1,35 @@
 function doInscriptionActions(pageContent) {
+    replaceContent(pageContent, 'app');
 
-    if (sessionStorage.getItem('user') === "null") {
-        replaceContent(pageContent, 'app');
+    if (!isUserConnected()) {
 
         const $signInForm = document.getElementById('inscription-form');
-        var submitButton = document.getElementById('connexion-button');
-        var allInputsValidated = undefined;
 
-        submitButton.addEventListener('click', (e) => {
-            allInputsValidated = getFillingStateOfInputs('inscription');
-        });
+        $signInForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
 
-        if(allInputsValidated) {
-            $signInForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                // feedbackAfterSubmitForm(false, "inscription");
-
+            if (validateInscriptionForm()) {
                 var user = getFormData(['login', 'password', 'birth_date', 'mail']);
-                let $form = document.getElementById('form-content');
 
                 try {
-                    await signIn(user);
-                    feedbackAfterSubmitForm(1, $form);
+                    const apiUserExists = await signIn(user);
+
+                    if (apiUserExists) {
+                        displayFeedbackAfterSubmit(1);
+
+                        return setTimeout(redirectionAction('#accueil'), 4000);
+                    }
+                    return displayFeedbackAfterSubmit(3);
 
                 } catch (error) {
-                    if (error.message === "403") {
-                        feedbackAfterSubmitForm(3, $form);
-                    } else {
-                        throw new Error(error);
-                    }
+                    throw new Error(error);
                 }
-            });
-        }
+            } else {
+                return validateInscriptionForm();
+            }
+        });
     } else {
-        throw new Error("Problème de sessionsStorage");
+        console.log('You must log out to sign in.')
+        redirectionAction('#error');
     }
 }

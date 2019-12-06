@@ -1,57 +1,53 @@
 function addDomElement
 (
-    elementId,
-    elementType,
-    elementClassesArray,
-    elementAttributesObject,
-    elementContainerId,
-    elementContainerClass
-)
-{
-    let $elementContainerList;
+    id,
+    type,
+    container,
+    classesArray,
+    attributesObject,
+    content
+) {
+    let $container = document.querySelector(`#${container}`);
 
-    if (elementContainerId) {
-        $elementContainerList = [document.getElementById(elementContainerId)];
-    } else if (elementContainerClass) {
-        $elementContainerList = Array.from(document.getElementsByClassName(elementContainerClass));
+    let $element = document.createElement(type);
+
+    if (id) {
+        $element.id = id;
     }
 
-    let $element = document.createElement(elementType);
-
-    if (elementId) {
-        $element.id = elementId;
-
-        $elementContainerList.forEach(($elementContainer) => {
-            $elementContainer.appendChild($element);
-        })
+    if (classesArray) {
+        $element.classList.add(classesArray.join(""));
     }
 
-    if(elementClassesArray) {
-        $element.classList.add(elementClassesArray.join(", "));
+    if (attributesObject) {
+        for (const Attribute in attributesObject) {
+            $element.setAttribute(Attribute, attributesObject[Attribute]);
+        }
     }
 
-    if(elementAttributesObject) {
-        elementAttributesObject.map((elementAttribute) => {
-            $element.setAttribute(elementAttribute, elementAttribute.value);
-        });
+    if (content) {
+        $element.innerHTML = content;
     }
+
+    $container.appendChild($element);
+    return null;
 }
 
-//This function is so long because of the different treatment depending on whether the element and the container have got an id or a class
-function removeDomElement(elementId, elementClass) {
-    //Test if the element already exists and if it is the case, we need to remove it.
-    let $elementsList;
+function removeDomElement(elmtId) {
+    //Test if the  already exists and if it is the case, we need to remove it.
 
-    if (elementId) {
-        $elementsList = [document.getElementById(elementId)];
-    } else if (elementClass) {
-        $elementsList = Array.from(document.getElementsByClassName(elementClass));
+    if (elmtId) {
+        const $element = document.querySelector(elmtId);
+        $element.parentElement.removeChild($element);
     }
 
-    //To remove element with class if the container has an ID
-    //In this hook, $element is an Html Collection !
-    $elementsList.forEach(($element) => {
-        $element.parentElement.removeChild($element);
-    })
+    return null;
+}
 
+function removeDomElementList(idsArray) {
+    idsArray.forEach((id) => {
+        removeDomElement(null, id);
+    });
+
+    return null;
 }

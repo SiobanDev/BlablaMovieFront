@@ -1,6 +1,7 @@
 function doHistoricalActions(pageContent) {
 
-    if (sessionStorage.getItem('user') !== "null") {
+    if (isUserConnected()) {
+        // await replaceContent(pageContent, 'app');
         replaceContent(pageContent, 'app');
 
     } else {

@@ -3,7 +3,7 @@
 (function () {
     async function init() {
         try {
-            updateTemplatesWhetherUserConnectedOrNot();
+            updateNavIfUserConnectedOrNot();
 
             new Router([
                 new Route('accueil', 'home.html', doAccueilActions, true),

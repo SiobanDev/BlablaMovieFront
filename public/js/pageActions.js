@@ -25,124 +25,170 @@ function showLoader(show, divId) {
     }
 }
 
-function updateTemplatesWhetherUserConnectedOrNot() {
-    let $mainHook = document.getElementById("main-hook");
+function updateNavIfUserConnectedOrNot() {
+    if (!isUserConnected()) {
+        try {
+            //Add nav items Movies and Historical
+            removeDomElementList
+            (
+                [
+                    "header-nav__movies-item",
+                    "header-historical-item",
+                    "footer-nav__movies-item",
+                    "footer-historical-item",
+                    'logout-item'
+                ]
+            );
 
-    if ($mainHook) {
-        if (sessionStorage.getItem('user') === null) {
+            return false;
 
-            try {
-                //Add nav items Movies and Historical
-                navItemsConstruct();
-                homeButtonsConstruct();
+        } catch (e) {
+            throw new Error(e);
+        }
 
-                removeDomElement('logout-item', null);
-            } catch (e) {
-                throw new Error(e);
-            }
-        } else {
-            try {
-                removeDomElement("home-buttons", null);
+    } else {
+        try {
+            addNavItemsForConnectedUser("header-nav");
+            addNavItemsForConnectedUser("footer-nav");
 
-                removeDomElement("movies-item", null);
+            //LogoutItem
+            addDomElement(
+                'logout-item',
+                'a',
+                "search-logout-item",
+                null,
+                {
+                    href: '#deconnexion'
+                },
+                "Déconnexion",
+            );
+            return true;
 
-                removeDomElement("historical-item", null);
-
-                addDomElement(
-                    'logout-item',
-                    'a',
-                    [],
-                    {
-                        href: '#deconnexion'
-                    },
-                    "search-logout-item",
-                    null
-                );
-
-            } catch (e) {
-                throw new Error(e);
-            }
+        } catch (e) {
+            throw new Error(e);
         }
     }
 }
 
-async function signIn(user) {
+function updateHomeIfUserConnectedOrNot() {
+    let $mainHook = document.getElementById("main-hook");
 
+    if (!isUserConnected()) {
+        try {
+            if ($mainHook) {
+                addButtonsForConnectedUser($mainHook);
+            }
+            return false;
+
+        } catch (e) {
+            throw new Error(e);
+        }
+    } else {
+        try {
+            if ($mainHook) {
+                removeDomElement("home-buttons");
+            }
+            return true;
+
+        } catch (e) {
+            throw new Error(e);
+        }
+    }
+}
+
+async function signIn(userData) {
     try {
-        await myFetch(apiInscriptionUrl, 'POST', {'Content-type': 'application/json'}, JSON.stringify(user));
+        const apiConnexionResponse = await fetch
+        (
+            apiInscriptionUrl,
+            {
+                method: 'POST',
+                headers:
+                    {
+                        'Content-type': 'application/json'
+                    },
+                credentials: 'include',
+                body: JSON.stringify(userData)
+            }
+        );
 
-        showLoader(true, 'app');
-        updateTemplatesWhetherUserConnectedOrNot();
-        redirectionAction('#accueil');
+        if (apiConnexionResponse.status === 200) {
+            showLoader(true, 'app');
+            redirectionAction('#accueil');
+            updateHomeIfUserConnectedOrNot();
+
+            return true;
+        }
+        return false;
 
     } catch (e) {
-        throw new Error(e.status);
+        throw new Error(e);
     }
 }
 
 async function connect(userData) {
     try {
-        let apiConnexionResponse = await fetch(apiConnexionUrl, {
-            method: 'post',
-            headers: {
-                'Content-type': 'application/json'
-            },
-            credentials: 'include',
-            body: JSON.stringify(userData)
-        });
+        let apiConnexionResponse = await fetch
+        (
+            apiConnexionUrl,
+            {
+                method: 'POST',
+                headers:
+                    {
+                        'Content-type': 'application/json'
+                    },
+                credentials: 'include',
+                body: JSON.stringify(userData)
+            }
+        );
 
-        if (apiConnexionResponse.status === 200) {
-            let token = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        // await fetch(checkConnexionApiUrl,{
+        //     method: 'get',
+        //     headers:
+        //         {
+        //             'Content-type': 'application/json'
+        //         },
+        //     credentials: 'include'
+        // })
 
-            sessionStorage.setItem('user', token);
-            showLoader(true, 'app');
-            updateTemplatesWhetherUserConnectedOrNot();
-
-            redirectionAction('#movies');
-        }
-
+        return ((apiConnexionResponse.status === 200) ? true : false);
 
     } catch (e) {
-        throw new Error(e.status);
+        throw new Error(e);
     }
 }
 
 async function signOut() {
+    const response = await fetch(apiSignOutUrl);
 
-    await fetch(apiSignOutUrl);
-
-    sessionStorage.setItem('user', null);
-
-    redirectionAction('#accueil');
+    return ((response.status === 200) ? true : false);
 }
 
 async function displayMovies() {
     showLoader(true, 'all-movies-items');
 
     try {
-        //moviesData with MyFetchis a string !
+        //// moviesData with MyFetchis a string !
         // var moviesData = await myFetch(apiMoviesUrl, 'GET', {'Content-type': 'application/json'}, null);
-        var moviesData = await fetch(
+        const response = await fetch(
             apiMoviesUrl,
             {
                 method: 'GET',
                 headers: {
                     'Content-type': 'application/json'
                 },
-                credentials: 'include'
-            });
+                credentials: 'include',
+            }
+        );
 
-        // var movieList = JSON.parse(moviesData.body);
-        var movieList = await moviesData.json();
-        var movieListObject = JSON.parse(movieList);
-        console.log('movieListObject', movieListObject);
+        const movieList = await response.json();
 
         let movieContent = document.getElementById('all-movies-items');
 
         //I would have written movieData.search if the key search was a variable or does not contain any special character (including caps)
-        for (var i = 0; i < movieListObject["Search"].length; i++) {
+        for (let i = 0; i < movieList["Search"].length; i++) {
 
-            var movie = movieListObject["Search"][i];
+            const movie = movieList["Search"][i];
             const movieItem = movieConstruct(movie, i);
 
             if (movieContent) {
@@ -150,8 +196,7 @@ async function displayMovies() {
             }
         }
     } catch (e) {
-        let eMessage = e.toString();
-        throw new Error(`myFetch in displayMovies doesn't work ${eMessage}`);
+        throw new Error(e);
     }
 }
 

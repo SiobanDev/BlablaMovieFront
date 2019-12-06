@@ -30,25 +30,17 @@
 
     <!-- Navigation Menu -->
     <nav class="navbar navbar-expand-sm">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#header-navigation"
-                aria-controls="header-navigation" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#header-nav"
+                aria-controls="header-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <ul id="header-navigation" class="nav navbar-nav collapse navbar-collapse row">
-            <li id="propos-item" class="nav-item col-s-1">
+        <ul id="header-nav" class="nav navbar-nav collapse navbar-collapse row">
+            <li id="propos-header-item" class="nav-item col-s-1">
                 <a href="#infos">A propos</a>
             </li>
 
-            <li id="movies-item" class="nav-item col-s-1">
-                <a href="#movies">Films</a>
-            </li>
-
-            <li id="historical-item" class="nav-item col-s-1">
-                <a href="#historical">Historique</a>
-            </li>
-
-            <li id="contact-item" class="nav-item col-s-1">
+            <li id="contact-header-item" class="nav-item col-s-1">
                 <a href="#contact">Contact</a>
             </li>
         </ul>
@@ -56,7 +48,6 @@
 
     <div id="search-logout-item" class="nav-item col-s-1">
         <span class="fas fa-search"></span>
-        <a id="logout-item" href="#deconnexion">Déconnexion</a>
     </div>
 </header>
 
@@ -71,20 +62,12 @@
                     <img class="logo" src="public/images/logo-supermovies.png" alt="logo superMovies">
                 </a>
             </li>
-            <ul class="footer-links nav navbar-nav">
-                <li class="propos-item nav-item col-s-1">
+            <ul id="footer-nav" class="footer-links nav navbar-nav">
+                <li id="propos-footer-item" class="nav-item col-s-1">
                     <a href="#infos">À propos</a>
                 </li>
 
-                <li class="movies-item nav-item col-s-1">
-                    <a href="#movies">Films</a>
-                </li>
-
-                <li class="historical-item nav-item col-s-1">
-                    <a href="#historical">Historique</a>
-                </li>
-
-                <li class="contact-item nav-item col-s-1">
+                <li id="contact-footer-item" class="nav-item col-s-1">
                     <a class="contact-item" href="#contact">Contact</a>
                 </li>
             </ul>
@@ -116,11 +99,13 @@
 </footer>
 <script src="public/js/domService.js"></script>
 <script src="public/js/constants.js"></script>
-<script src="public/js/http.js"></script>
 <script src="public/js/utils.js"></script>
-<script src="public/js/form.js"></script>
-<script src="public/js/components/NavItems-component.js"></script>
-<script src="public/js/components/HomeButtons-component.js"></script>
+<script src="public/js/services/inscriptionFormService.js"></script>
+<script src="public/js/services/connectedHomeService.js"></script>
+<script src="public/js/services/checkStateOfUserService.js"></script>
+<script src="public/js/services/connectedNavService.js"></script>
+<script src="public/js/services/connexionFormService.js"></script>
+<script src="public/js/services/formService.js"></script>
 <script src="public/js/components/Movie-component.js"></script>
 <script src="public/js/routes/accueil.js"></script>
 <script src="public/js/routes/connexion.js"></script>
@@ -129,7 +114,6 @@
 <script src="public/js/routes/error.js"></script>
 <script src="public/js/routes/movies.js"></script>
 <script src="public/js/routes/historical.js"></script>
-<script src="public/js/user.js"></script>
 <script src="public/js/pageActions.js"></script>
 <script src="public/js/route.js"></script>
 <script src="public/js/router.js"></script>

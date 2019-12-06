@@ -1,43 +1,31 @@
 function doConnexionActions(pageContent) {
+    replaceContent(pageContent, 'app');
 
-    if (sessionStorage.getItem('user') === null) {
-        replaceContent(pageContent, 'app');
-
+    if (!isUserConnected()) {
         const $signInForm = document.getElementById('connexion-form');
-        var submitButton = document.getElementById('connexion-button');
-        var oneInputIsEmpty = false;
 
-        submitButton.addEventListener('click', () => {
-            var allFillingStatesOfInputs = getFillingStateOfInputs('connexion');
+        $signInForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
 
-            for (var i = 0; i < allFillingStatesOfInputs.length; i++) {
-                if (allFillingStatesOfInputs[i] === false) {
-                    oneInputIsEmpty = true;
-                    return oneInputIsEmpty;
-                }
-            }
-        });
-
-        if (oneInputIsEmpty === false) {
-            $signInForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                let $form = document.getElementById('form-content');
-
+            if (validateConnexionForm()) {
                 try {
-                    await connect(getFormData(['mail', 'password']));
-                    feedbackAfterSubmitForm(2, $form);
+                    const apiUserConnected = await connect(getFormData(['mail', 'password']));
+
+                    if (apiUserConnected) {
+                        displayFeedbackAfterSubmit(2);
+                        return setTimeout(redirectionAction('#movies'), 10000);
+                    }
+                    return displayFeedbackAfterSubmit(4);
 
                 } catch (error) {
-                    if (error.message === "403") {
-                        feedbackAfterSubmitForm(4, $form);
-                    } else {
-                        throw new Error(error);
-                    }
+                    throw new Error(error);
                 }
-            });
-        }
-
+            } else {
+                return validateConnexionForm();
+            }
+        });
     } else {
-        console.log('No connected user')
+        console.log('You are already connected.')
+        return redirectionAction('#error');
     }
 }

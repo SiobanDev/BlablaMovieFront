@@ -13,6 +13,14 @@
 
 .collapse:not(.show) {
     display: none;
+    background: none;
+    margin: 0;
+}
+
+header .navbar-collapse {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    margin-top: 10px;
 }
 
 .navbar {
@@ -55,7 +63,13 @@ body .invalid-feedback {
     padding: 8px;
 }
 
-/** PAGE ******************************************************************************************************************************/
+/** LOADER ****************************************************************/
+
+#loader {
+    margin: auto;
+}
+
+/** PAGES ******************************************************************************************************************************/
 html {
     position: relative;
     top: 0;
@@ -91,7 +105,6 @@ body {
     background-position: top;
     min-height: 100vh;
 }
-
 
 p {
     margin: 0;
@@ -156,23 +169,9 @@ header, .main-content, footer {
     margin: calc(2% + 20px) 0;
 }
 
-#movies-item, #historical-item {
-    display: none;
-}
-
 /** HEADER ****************************************************************/
 header.row {
     display: flex;
-}
-
-header .nav {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
-    margin-top: 10px;
-}
-
-header nav li{
-    width: 100%;
 }
 
 header #search-logout-item {
@@ -195,25 +194,18 @@ header #search-logout-item span {
 }
 
 header #logout-item {
-    display: none;
+    display: flex;
     border: solid 2px #eee;
     border-radius: 20px;
     padding: 6px 12px;
     margin-left: 30px;
-}
-
-header #search-logout-item #logout-item {
     color: #eee;
     font-size: 90%;
 }
 
-/*.navbar-toggler {*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    background: none;*/
-/*    border: none;*/
-/*}*/
+header #logout-item:hover {
+    background-color: #f7b436;
+}
 
 .navbar-toggler-icon {
     background: url("../images/ic-menu-mobile.png") no-repeat center center;
@@ -265,7 +257,7 @@ p.members-hook {
     margin-left: 0;
 }
 
-#connexion-btn:hover {
+#connexion-btn:hover, #inscription-btn:hover {
     background-color: white;
     color: #f7b436;
 }
@@ -335,7 +327,7 @@ p.members-hook {
     align-items: center;
     flex-direction: column;
     background: rgba(247, 80, 80, 0.8);
-    border-radius: 10%;
+    border-radius: 20px;
     padding: 10%;
     width: 66%;
     height: 50%;
@@ -629,6 +621,12 @@ footer .footer-row .facebook-item, footer .footer-row .pinterest-item, footer .f
 /** RESPONSIVE ********************************************************************************************************/
 
 @media (min-width: 768px) {
+    header .nav {
+        background: none;
+        border-radius: 0;
+        margin-top: 0;
+    }
+
     .navbar-expand-sm .navbar-toggler {
         display: none !important;
     }
@@ -640,11 +638,6 @@ footer .footer-row .facebook-item, footer .footer-row .pinterest-item, footer .f
 
     #home-buttons #inscription-btn {
         margin-left: 12px;
-    }
-
-    .movies-hook > .column3 {
-        width: 100%;
-        min-height: 100%;
     }
 
     footer .footer-row {
@@ -688,7 +681,10 @@ footer .footer-row .facebook-item, footer .footer-row .pinterest-item, footer .f
         width: auto;
     }
 
-
+    .movies-hook > .column3 {
+        width: 50%;
+        min-height: 100%;
+    }
 }
 
 @media (min-width: 1200px) {

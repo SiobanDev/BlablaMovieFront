@@ -2,4 +2,5 @@
 
 function doAccueilActions(pageContent) {
     replaceContent(pageContent, 'app');
+    updateHomeIfUserConnectedOrNot();
 }

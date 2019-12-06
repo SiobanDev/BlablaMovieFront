@@ -1,15 +1,14 @@
 async function doMoviesActions (pageContent) {
 
-    if (sessionStorage.getItem('user') !== "null") {
+    if (isUserConnected()) {
         replaceContent(pageContent, 'app');
 
         try {
-            await displayMovies();
+            return await displayMovies();
         } catch (e) {
-            let eMessage = e.toString();
-            throw new Error(`displayMovies failed ${eMessage}`);
+            throw new Error(e);
         }
     } else {
-        redirectionAction('#error');
+        return redirectionAction('#error');
     }
 }
