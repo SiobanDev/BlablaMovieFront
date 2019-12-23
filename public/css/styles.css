@@ -1,10 +1,10 @@
 /** BOOTSTRAP **************************************************************************************************************************/
-.row{
+.row {
     margin: 0;
     display: block;
 }
 
-.container-fluid{
+.container-fluid {
     padding-right: 0;
     padding-left: 0;
     margin-right: 0;
@@ -13,6 +13,14 @@
 
 .collapse:not(.show) {
     display: none;
+    background: none;
+    margin: 0;
+}
+
+header .navbar-collapse {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    margin-top: 10px;
 }
 
 .navbar {
@@ -34,57 +42,95 @@ body .navbar-toggler {
     padding: 10px 15px;
 }
 
-/** PAGE ******************************************************************************************************************************/
-*{
+body .btn, body .form-control {
+    width: 100%;
+}
+
+label .text-muted {
+    color: white !important;
+}
+
+body label {
+    margin-bottom: .25rem;
+}
+
+body .invalid-feedback {
+    margin-bottom: .5rem;
+    font-weight: 400;
+    background: rgba(220, 220, 220, 0.6);
+    border-radius: 7px;
+    font-size: 90%;
+    padding: 8px;
+}
+
+/** LOADER ****************************************************************/
+
+#loader {
+    margin: auto;
+}
+
+/** PAGES ******************************************************************************************************************************/
+html {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 100%;
+}
+
+body * {
     position: relative;
     top: 0;
     left: 0;
 }
 
-html, body{
+html, body {
     width: 100%;
-    height: 100%;
 }
+
 body {
-    padding : 0;
+    padding: 0;
     margin: 0;
     position: absolute;
     top: 0;
     left: 0;
     font-family: 'Fira Sans', Arial, sans-serif, Verdana;
     font-weight: 300;
-    font-size: 15px;
-    background: url("../images/interstellar.png") no-repeat;
-    background-size: cover;
+    font-size: 100%;
+    background: url(../images/interstellar-gr.png) no-repeat, black;
+    background-size: 200% auto;
     color: #ffffff;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    background-position-x: 65%;
+    justify-content: space-between;
+    background-position: top;
+    min-height: 100vh;
 }
 
-p{
+p {
     margin: 0;
 }
 
-a{
+a {
     color: white;
+}
+
+a:hover {
+    color: white;
+    text-decoration: none;
 }
 
 ul {
     list-style-type: none;
 }
 
-.main-content{
-    flex: 1;
+body .main-content {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    background: linear-gradient(transparent 20%, #1b1b1d 80%);
+    padding: 2% 20%;
 }
 
 
-.lign1{
+.lign1 {
     width: 4px;
     height: 80%;
     border-radius: 2px;
@@ -95,42 +141,45 @@ ul {
     bottom: 10%;
 }
 
-.bold-style{
+.bold-style {
     font-weight: 700;
 }
 
-header, .main-content, footer{
+header, .main-content, footer {
     padding: 5%;
 }
 
-.navbar{
-    display: flex;
-    align-items: center;
-}
+/*.navbar {*/
+/*    flex-direction: column;*/
+/*    flex-wrap: nowrap;*/
+/*}*/
 
 .nav {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+
 }
 
+.nav li:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
 
+#inscription-form, #connexion-form {
+    margin: calc(2% + 20px) 0;
+}
 
-    /** HEADER ****************************************************************/
-header.row{
+/** HEADER ****************************************************************/
+header.row {
     display: flex;
 }
 
-header, .nav{
-    width: 100%;
-}
-
-header .search-logout-item{
+header #search-logout-item {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     flex: 1;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    height: 76px;
 }
 
 header .logo-item {
@@ -139,34 +188,26 @@ header .logo-item {
     margin-right: 30px;
 }
 
-header .search-logout-item span{
+header #search-logout-item span {
     display: block;
-    font-size: 20px;
+    font-size: 110%;
 }
 
-header .logout-item {
-    display: none;
+header #logout-item {
+    display: flex;
     border: solid 2px #eee;
     border-radius: 20px;
     padding: 6px 12px;
     margin-left: 30px;
-}
-
-header .search-logout-item .logout-item {
     color: #eee;
-    font-size: 13px;
+    font-size: 90%;
 }
 
-.navbar-toggler{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: .25rem .75rem;
-    background: none;
-    border: none;
+header #logout-item:hover {
+    background-color: #f7b436;
 }
 
-.navbar-toggler-icon{
+.navbar-toggler-icon {
     background: url("../images/ic-menu-mobile.png") no-repeat center center;
     background-size: 100% 100%;
     width: 2em;
@@ -176,37 +217,33 @@ header .search-logout-item .logout-item {
     display: block;
 }
 
-
 /** HOME **************************************************************/
 
 .movie-votes {
     color: #f7b436;
 }
 
-.main-hook p{
+#main-hook p {
     font-size: 26px;
 }
 
-.first-hook{
-    display: none;
-}
-
-.first-lines-hook, .last-lines, .members-hook{
+.first-lines-hook, .last-lines, .members-hook {
     margin-left: 16px;
 }
 
-p.members-hook{
-    font-size: 18px;
+p.members-hook {
+    font-size: 150%;
 }
 
-.home-buttons{
+#home-buttons {
     display: flex;
     flex-direction: column-reverse;
     min-width: 115px;
     width: 20%;
+    margin-left: 16px;
 }
 
-.connexion-btn, .inscription-btn{
+#connexion-btn, #inscription-btn {
     background-color: transparent;
     color: #f7b436;
     border: solid 2px #f7b436;
@@ -214,20 +251,324 @@ p.members-hook{
     margin: 20px 0;
 }
 
-.inscription-btn{
+#inscription-btn {
     background-color: #f7b436;
     color: white;
     margin-left: 0;
 }
 
-    /** FOOTER **************************************************************/
-footer{
-    background: #1b1b1d;
+#connexion-btn:hover, #inscription-btn:hover {
+    background-color: white;
+    color: #f7b436;
+}
+
+/** CONNEXION **************************************************************/
+
+#connexion-form {
+    width: 100%;
+    max-width: 330px;
+}
+
+#connexion-form .checkbox {
+    font-weight: 400;
+}
+
+#connexion-form .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+}
+
+#connexion-form .form-control:focus {
+    z-index: 2;
+}
+
+#connexion-form input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+#connexion-form input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+/*form input:invalid {*/
+/*    background: rgba(220,20,60,0.5);*/
+/*}*/
+
+
+/** INSCRIPTION ****************************************************/
+
+.obligatory-fields {
+    margin-top: 8px;
+}
+
+/** FEEDBACK **************************************************************/
+#popup-container {
+    display: none;
+    opacity: 0;
+    transition: opacity 1s linear 0.5s;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: transparent;
+    justify-content: center;
+    align-items: center;
+}
+
+#feedback-popup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: rgba(247, 80, 80, 0.8);
+    border-radius: 20px;
+    padding: 10%;
+    width: 66%;
+    height: 50%;
+}
+
+.feedback-text {
+    font-weight: 400;
+    font-size: 120%;
+    color: white;
+}
+
+.feedback-image {
+    display: block;
+    width: 40%;
+    filter: invert(100%);
+    margin: 10% 0;
+    align-self: center;
+}
+
+#feedback-popup .fa-times {
+    align-self: flex-end;
+    position: absolute;
+    right: 10%;
+    left: auto;
+    top: 10%;
+}
+
+#feedback-popup .fa-times:hover {
+    background: black;
+}
+
+/** MOVIES **************************************************************/
+.movies-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.movies-hook {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.movies-hook > .column1 {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    height: 200px;
+}
+
+.movies-hook .lines-hook {
+    font-weight: 200;
+    font-size: 150%;
+    margin-left: 16px;
+}
+
+.movies-hook .best-week-movie {
+
+}
+
+.movies-hook .members-hook {
+    font-size: 100%;
+}
+
+.movies-hook .members-number {
+    color: #f7b436;
+}
+
+.movies-hook > .column2 {
+    width: 100%;
+    padding: 5% 0;
+    z-index: 1;
+}
+
+.movies-hook > .column3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 5% 0 5% 5%;
+    min-height: 213px;
+}
+
+.best-week-movie-hook {
+    font-style: italic;
+    font-weight: 100;
+}
+
+.gold-form {
+    position: absolute;
+    width: 120%;
+    right: 0;
+    z-index: 0;
+    left: auto;
+}
+
+.countdown-shape {
+    display: flex;
+    justify-content: space-between;
+}
+
+.countdown-shape .column {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 25%;
+}
+
+.countdown-number {
+    font-size: 200%;
+    color: #1b1b1d;
+    text-align: center;
+    background: rgba(27, 27, 29, 0.1);
+    border-radius: 5px;
+    width: 45%;
+}
+
+.time-indication {
+    width: 100%;
+    text-align: center;
+}
+
+#all-movies-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.movie-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+    margin-bottom: 20px;
+}
+
+.movie-view, .movie-infos {
+    width: 100%;
+}
+
+.movie-view {
+    height: 100%;
+    background: white;
+    border-radius: 20px 20px 0 0;
+}
+
+
+.movie-order {
+    border-radius: 0 20px 20px 0;
+    position: absolute;
+    top: 5%;
+    background: white;
+    box-shadow: rgb(80, 80, 80) 0px 1px 7px;
+    z-index: 999;
+    height: 40px;
+    color: #1b1b1d;
+    font-size: 120%;
+    width: 20%;
+    text-align: center;
+    line-height: 40px;
+    font-weight: bold;
+    min-width: 32px;
+}
+
+.movie-poster {
+    border-radius: 10px 10px 0 0;
+    width: 100%;
+}
+
+.movie-year {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    top: auto;
+}
+
+.movie-infos {
+    background: white;
+    border-radius: 0 0 10px 10px;
+    padding: 25px 5% 10% 5%;
+    display: flex;
+    align-items: flex-end;
+}
+
+.movie-title {
+    color: #1b1b1d;
+    font-weight: bold;
+    width: 100%;
+    font-size: 110%;
+}
+
+.movie-vote-button {
+    position: absolute;
+    background: rgb(240, 240, 240);
+    right: 10%;
+    left: auto;
+    top: -17.5px;
+    border-radius: 20px;
+    color: #1b1b1d;
+    width: 25%;
+    height: 35px;
+    display: flex;
+    justify-content: space-around;
+    min-width: 53px;
+}
+
+.vote-icon {
+    height: 20px;
+    width: auto;
+}
+
+/** ERROR **************************************************************/
+#error-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(220, 220, 220, 0.6);
+    border-radius: 7px;
+    padding: 5%;
+}
+
+#error-inscription-message {
+    font-size: 120%;
+}
+
+.error-image {
+    width: 50%;
+}
+
+
+/** FOOTER **************************************************************/
+footer {
     padding-bottom: 10px;
 }
 
 footer .footer-row {
     border-top: solid 0.5px rgba(192, 192, 192, 0.2);
+    display: flex;
+    flex-direction: column;
 }
 
 footer .footer-row > ul {
@@ -235,17 +576,18 @@ footer .footer-row > ul {
     margin: 5%;
     justify-content: space-between;
     padding: 0;
+    min-height: 120px;
 }
 
-footer .logo-item{
+footer .logo-item {
     height: 50%;
 }
 
-footer .footer-links, footer .medias-item{
+footer .footer-links, footer .medias-item {
     display: flex;
 }
 
-footer .footer-links{
+footer .footer-links {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -280,17 +622,28 @@ footer .footer-row .facebook-item, footer .footer-row .pinterest-item, footer .f
 /** RESPONSIVE ********************************************************************************************************/
 
 @media (min-width: 768px) {
-    .navbar-expand-sm .navbar-toggler {
-        display: none;
+    header .nav {
+        background: none;
+        border-radius: 0;
+        margin-top: 0;
     }
 
-    .home-buttons{
+    .navbar-expand-sm .navbar-toggler {
+        display: none !important;
+    }
+
+    #home-buttons {
         display: flex;
         flex-direction: row;
     }
 
-    .home-buttons .inscription-btn{
+    #home-buttons #inscription-btn {
         margin-left: 12px;
+    }
+
+    .movies-hook > .column3 {
+        width: 100%;
+        min-height: 100%;
     }
 
     footer .footer-row {
@@ -301,11 +654,11 @@ footer .footer-row .facebook-item, footer .footer-row .pinterest-item, footer .f
         margin: 2% 0;
     }
 
-    footer .logo-item{
+    footer .logo-item {
         margin-right: 2%;
     }
 
-    footer .footer-links{
+    footer .footer-links {
         display: flex;
         flex-direction: row;
     }
@@ -322,25 +675,26 @@ footer .footer-row .facebook-item, footer .footer-row .pinterest-item, footer .f
         margin-bottom: 0;
         display: flex;
     }
-
 }
+
 @media (min-width: 992px) {
-    body{
-        background-position: center;
+    body {
+        background-size: 100% auto;
+
     }
 
+    body .btn, body .form-control {
+        width: auto;
+    }
 }
 
 @media (min-width: 1200px) {
 
-    header, .main-content, footer{
-        padding: 0 20%;
+    header, .main-content, footer {
+        padding: 5% 20%;
     }
 
-    .accueil-content{
-        padding: 0 20% 10% 20%;
+    .movies-hook > .column2 {
+        width: 50%;
     }
-
-
-
 }

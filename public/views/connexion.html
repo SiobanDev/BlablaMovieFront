@@ -1,0 +1,28 @@
+<div id="form-content" class="row">
+    <div class="col-md-8 order-md-1">
+        <h4 class="mb-3">Connexion</h4>
+        <form method="POST" id="connexion-form" class="needs-validation">
+            <div class="mb-3">
+                <label for="mail">Mail</label>
+
+                <div id="invalid-email-login-feedback" class="invalid-feedback">
+                    Votre email n'est pas au bon format.
+                </div>
+
+                <input type="email" class="form-control" id="mail" name="mail" placeholder="Mail" onsubmit="validateMail()" autofocus>
+            </div>
+
+            <div class="mb-3">
+                <label for="password">Password</label>
+                <input type="password" id="password" class="form-control" name="password"  placeholder="Password" >
+            </div>
+
+            <div id="invalid-empty-feedback" class="invalid-feedback">
+                Certains champs requis sont vides.
+            </div>
+
+            <button id="connexion-button" class="btn btn-primary btn-lg btn-block" type="submit">Connexion</button>
+
+        </form>
+    </div>
+</div>

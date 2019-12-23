@@ -2,17 +2,17 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SuperMovies</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<!--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
+
 
     <!-- Fonts -->
     <style>
-        @import url('https://fonts.googleapis.com/css?family=Fira+Sans:300,400,700&display=swap');
+        @import url('https://fonts.googleapis.com/css?family=Fira+Sans:100,200,300,400,700&display=swap');
     </style>
 
     <!-- SuperMovies style -->
@@ -20,43 +20,34 @@
 
 </head>
 
-<body class="container-fluid">
+<body id="body" class="container-fluid">
 <!-- Header -->
 <header class="row">
 
-    <a class="logo-item item col-s-2" href="#accueil">
+    <a class="logo-item item col-s-2" href="/">
         <img class="logo" src="public/images/logo-supermovies.png" alt="logo superMovies">
     </a>
 
     <!-- Navigation Menu -->
     <nav class="navbar navbar-expand-sm">
-        <ul id="header-navigation" class="nav navbar-nav collapse navbar-collapse row">
-            <li class="propos-item nav-item col-s-1">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#header-nav"
+                aria-controls="header-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <ul id="header-nav" class="nav navbar-nav collapse navbar-collapse row">
+            <li id="propos-header-item" class="nav-item col-s-1">
                 <a href="#infos">A propos</a>
             </li>
 
-            <li class="movies-item nav-item col-s-1">
-                <a href="#movies">Films</a>
-            </li>
-
-            <li class="historical-item nav-item col-s-1">
-                <a href="#historical">Historique</a>
-            </li>
-
-            <li class="contact-item nav-item col-s-1">
+            <li id="contact-header-item" class="nav-item col-s-1">
                 <a href="#contact">Contact</a>
             </li>
         </ul>
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#header-navigation"
-                aria-controls="header-navigation" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
     </nav>
 
-    <div class="search-logout-item nav-item col-s-1">
+    <div id="search-logout-item" class="nav-item col-s-1">
         <span class="fas fa-search"></span>
-        <a class="logout-item" href="/logout">Déconnexion</a>
     </div>
 </header>
 
@@ -71,20 +62,12 @@
                     <img class="logo" src="public/images/logo-supermovies.png" alt="logo superMovies">
                 </a>
             </li>
-            <ul class="footer-links nav navbar-nav">
-                <li class="propos-item nav-item col-s-1">
-                    <a href="#infos">A propos</a>
+            <ul id="footer-nav" class="footer-links nav navbar-nav">
+                <li id="propos-footer-item" class="nav-item col-s-1">
+                    <a href="#infos">À propos</a>
                 </li>
 
-                <li class="movies-item nav-item col-s-1">
-                    <a href="#movies">Films</a>
-                </li>
-
-                <li class="historical-item nav-item col-s-1">
-                    <a href="#historical">Historique</a>
-                </li>
-
-                <li class="contact-item nav-item col-s-1">
+                <li id="contact-footer-item" class="nav-item col-s-1">
                     <a class="contact-item" href="#contact">Contact</a>
                 </li>
             </ul>
@@ -114,14 +97,32 @@
         </ul>
     </div>
 </footer>
-
+<script src="public/js/constants.js"></script>
+<script src="public/js/utils.js"></script>
+<script src="public/js/services/templates/domService.js"></script>
+<script src="public/js/services/templates/templateService.js"></script>
+<script src="public/js/services/templates/forms/formService.js"></script>
+<script src="public/js/services/templates/forms/connexionFormService.js"></script>
+<script src="public/js/services/templates/forms/inscriptionFormService.js"></script>
+<script src="public/js/services/apiService.js"></script>
+<script src="public/js/components/ConnectedHome-component.js"></script>
+<script src="public/js/components/ConnectedNav-component.js"></script>
+<script src="public/js/components/Movie-component.js"></script>
+<script src="public/js/routes/accueil.js"></script>
+<script src="public/js/routes/connexion.js"></script>
+<script src="public/js/routes/deconnexion.js"></script>
+<script src="public/js/routes/inscription.js"></script>
+<script src="public/js/routes/error.js"></script>
+<script src="public/js/routes/movies.js"></script>
+<script src="public/js/routes/historical.js"></script>
 <script src="public/js/route.js"></script>
 <script src="public/js/router.js"></script>
 <script src="public/js/app.js"></script>
 
 <!-- Bootstrap -->
-<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>-->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 <!-- Icons -->
 <script src="https://kit.fontawesome.com/a7cc21547b.js" crossorigin="anonymous"></script>
 

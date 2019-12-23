@@ -1,0 +1,56 @@
+<div id="form-content" class="row">
+    <div class="col-md-8 order-md-1">
+        <h4 class="mb-3">Inscription</h4>
+        <form method="POST" id="inscription-form" class="needs-validation">
+            <div class="mb-3">
+                <label for="login">Login <span class="text-muted">*</span></label>
+
+                <div id="invalid-regex-login-feedback" class="invalid-feedback">
+                    Votre login doit contenir uniquement des caractères alphanumériques.
+                </div>
+                <div id="invalid-size-login-feedback" class="invalid-feedback">
+                    La longueur de votre login doit être comprise entre 3 et 18 caractères.
+                </div>
+
+                <input type="text" class="form-control" id="login" name="login" placeholder="Login" onBlur="validateInscriptionLogin()">
+            </div>
+
+            <div class="mb-3">
+                <label for="mail">Email <span class="text-muted">*</span></label>
+
+                <div id="invalid-format-email-feedback" class="invalid-feedback">
+                    Votre email n'est pas au bon format.
+                </div>
+
+                <input type="email" class="form-control" id="mail" name="mail" placeholder="you@example.com" onBlur="validateMail()">
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="sr-only">Password <span class="text-muted">*</span></label>
+
+                <div id="invalid-size-pwd-feedback" class="invalid-feedback">
+                    La longueur de votre mot de passe doit être au minimum de 12 caractères.
+                </div>
+
+                <input type="password" id="password" class="form-control" name="password" placeholder="Password" onBlur="validateInscriptionPassword()">
+            </div>
+
+            <div class="mb-3">
+                <label>Date of Birth <span class="text-muted">*</span></label>
+
+                <div id="invalid-age-feedback" class="invalid-feedback">
+                    Vous devez avoir plus de 15 ans pour vous inscrire.
+                </div>
+
+                <input type="date" class="form-control" id="birth_date" name="birth_date" placeholder="Date of Birth" onKeyUp="validateInscriptionAge()" >
+            </div>
+
+            <div id="invalid-empty-feedback" class="invalid-feedback">
+                Certains champs requis sont vides.
+            </div>
+            <button id="inscription-button" class="btn btn-primary btn-lg btn-block" type="submit">Inscription</button>
+
+            <p class="obligatory-fields">Les champs avec une * sont obligatoires.</p>
+        </form>
+    </div>
+</div>
