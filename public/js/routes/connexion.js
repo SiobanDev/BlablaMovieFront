@@ -1,34 +1,41 @@
-function doConnexionActions(pageContent, responseStatus) {
-    replaceContent(pageContent, 'app');
+async function doConnexionActions(pageContent) {
+    if (!await isUserConnected()) {
+        showLoader(false, 'app');
+        replaceContent(pageContent, 'app');
 
-    if (responseStatus === 403) {
         const $signInForm = document.getElementById('connexion-form');
 
         $signInForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
             if (validateConnexionForm()) {
+                showLoader(true, 'app');
+
                 try {
                     const apiUserConnected = await connect(getFormData(['mail', 'password']));
+                    showLoader(false, 'app');
 
                     if (apiUserConnected) {
                         displayFeedbackAfterSubmit(2);
-                        return setTimeout(redirectionAction('#movies'), 10000);
+                        setTimeout(() => {
+                            redirectionAction('#movies');
+                        }, 2000);
+                        return true;
                     }
-                    return displayFeedbackAfterSubmit(4);
+                    displayFeedbackAfterSubmit(4);
+                    return false;
 
                 } catch (error) {
                     throw new Error(error);
                 }
             } else {
-                return validateConnexionForm();
+                validateConnexionForm();
+                return false;
             }
         });
-    } else if(responseStatus === 200) {
-        redirectionAction('#error');
-        return console.log('You must log out to log in.')
-
     } else {
-        return new Error(responseStatus);
+        console.log('You are already connected.')
+        redirectionAction('#error');
+        return false;
     }
 }

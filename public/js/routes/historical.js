@@ -1,14 +1,11 @@
-function doHistoricalActions(pageContent, responseStatus) {
+async function doHistoricalActions(pageContent) {
 
-    if (responseStatus === 200) {
+    if (!await isUserConnected()) {
         // await replaceContent(pageContent, 'app');
         replaceContent(pageContent, 'app');
 
-    } else if(responseStatus === 403) {
-        redirectionAction('#error');
-        return console.log('You must be log in.')
-
     } else {
-        return new Error(responseStatus);
+        redirectionAction('#error');
     }
+
 }

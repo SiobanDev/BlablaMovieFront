@@ -1,9 +1,7 @@
-function doInscriptionActions(pageContent, responseStatus) {
-
+async function doInscriptionActions(pageContent) {
     replaceContent(pageContent, 'app');
 
-    if (responseStatus === 403) {
-
+    if (!await isUserConnected()) {
         const $signInForm = document.getElementById('inscription-form');
 
         $signInForm.addEventListener('submit', async (e) => {
@@ -13,28 +11,34 @@ function doInscriptionActions(pageContent, responseStatus) {
                 var user = getFormData(['login', 'password', 'birth_date', 'mail']);
 
                 try {
+                    showLoader(true, 'app');
+
                     const apiUserExists = await signIn(user);
 
                     if (apiUserExists) {
-                        displayFeedbackAfterSubmit(1);
+                        showLoader(false, 'app');
 
-                        return setTimeout(redirectionAction('#accueil'), 4000);
+                        displayFeedbackAfterSubmit(1);
+                        setTimeout(() => {
+                            redirectionAction('#accueil');
+                        }, 2000);
+                        return true;
                     }
-                    return displayFeedbackAfterSubmit(3);
+                    showLoader(false, 'app');
+                    displayFeedbackAfterSubmit(3);
+                    return false;
 
                 } catch (error) {
                     throw new Error(error);
                 }
             } else {
-                return validateInscriptionForm();
+                validateInscriptionForm();
+                return false;
             }
         });
-
-    } else if(responseStatus === 200) {
-        redirectionAction('#error');
-        return console.log('You must log out to sign in.')
-
     } else {
-        return new Error(responseStatus);
+        console.log('You must log out to sign in.')
+        redirectionAction('#error');
+        return false;
     }
 }

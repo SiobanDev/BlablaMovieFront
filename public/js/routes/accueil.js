@@ -1,8 +1,10 @@
 'use strict';
 
-function doAccueilActions(pageContent, responseStatus) {
-
+async function doAccueilActions(pageContent) {
     replaceContent(pageContent, 'app');
 
-    updateHomeIfUserConnectedOrNot(responseStatus);
+    showLoader(true, 'app');
+    await updateHomeIfUserConnectedOrNot();
+    showLoader(false, 'app');
+
 }

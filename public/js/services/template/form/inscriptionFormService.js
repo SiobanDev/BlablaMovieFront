@@ -47,7 +47,7 @@ function validateInscriptionForm() {
     var $emptyErrorMessage = document.getElementById('invalid-empty-feedback');
 
     if (
-        validateInputsFillingState()) {
+        validateInputsFillingState("inscription")) {
         $emptyErrorMessage.style.display = "none";
     } else {
         $emptyErrorMessage.style.display = "block";
@@ -86,16 +86,11 @@ function validateInscriptionForm() {
     }
 
     return (
-        (
-            validateInputsFillingState() &&
+        !!(
+            validateInputsFillingState("inscription") &&
             validateInscriptionLogin() &&
             validateMail() &&
             validateInscriptionPassword() &&
             validateInscriptionAge()
-        ) ? true : false);
+        ));
 }
-
-
-
-
-

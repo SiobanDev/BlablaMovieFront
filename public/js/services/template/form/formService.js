@@ -5,12 +5,12 @@ function validateMail() {
     return (regex.test($mail));
 }
 
-function validateInputsFillingState() {
-    const $form = document.getElementById("connexion-form");
-    const inputsList = $form.getElementsByTagName("input");
+function validateInputsFillingState(formTypeName) {
+    const $form = document.getElementById(`${formTypeName}-form`);
+    const $inputsList = $form.getElementsByTagName("input");
 
     //With a map, the loop does not end with the return !
-    let inputsFillingStateList = Array.from(inputsList).map((input) => {
+    let inputsFillingStateList = Array.from($inputsList).map((input) => {
 
         return (input.value.length > 0);
     });
@@ -21,6 +21,11 @@ function validateInputsFillingState() {
 
 function displayFeedbackAfterSubmit(feedbackType) {
     let $container = document.getElementById("app");
+    let $feedback = document.getElementById("feedback-popup");
+
+    if($feedback) {
+        $container.removeChild($feedback);
+    }
 
     let $feedbackDiv = document.createElement('div');
     $feedbackDiv.id = 'feedback-popup';
@@ -48,7 +53,7 @@ function displayFeedbackAfterSubmit(feedbackType) {
             $feedbackImage.alt = "thumb-success";
             $feedbackImage.classList.add('feedback-image');
 
-            $feedbackText.innerHTML = "Félicitations, vous avez bien été enregistré(e) !";
+            $feedbackText.innerHTML = "Félicitations, vous avez bien été enregistré(e) ! Vous pouvez maintenant vous connecter.";
 
             $feedbackDiv.appendChild($feedbackText);
             $container.appendChild($feedbackDiv);

@@ -1,28 +1,31 @@
 'use strict';
 
 (function () {
+    showLoader(true, 'app');
+    localStorage.setItem("token", null);
+
     async function init() {
         try {
-            const response = await isUserConnected();
+            await updateNavIfUserConnectedOrNot();
 
             new Router([
-                new Route('accueil', 'home.html', response.status, doAccueilActions, true),
+                new Route('accueil', 'home.html', doAccueilActions, true),
 
-                new Route('inscription', 'inscription.html', response.status, doInscriptionActions),
+                new Route('inscription', 'inscription.html', doInscriptionActions),
 
-                new Route('connexion', 'connexion.html', response.status, doConnexionActions),
+                new Route('connexion', 'connexion.html', doConnexionActions),
 
-                new Route('deconnexion', 'home.html', response.status, doDeconnexionActions),
+                new Route('deconnexion', 'home.html', doDeconnexionActions),
 
-                new Route('movies', 'movies.html', response.status, doMoviesActions),
+                new Route('movies', 'movies.html', doMoviesActions),
 
-                new Route('historical', 'historical.html', response.status, doHistoricalActions),
+                new Route('historical', 'historical.html', doHistoricalActions),
 
-                new Route('contact', 'contact.html', response.status),
+                new Route('contact', 'contact.html'),
 
-                new Route('infos', 'infos.html', response.status),
+                new Route('infos', 'infos.html'),
 
-                new Route('error', 'error.html', response.status, doErrorActions)
+                new Route('error', 'error.html', doErrorActions)
             ]);
 
         } catch (e) {

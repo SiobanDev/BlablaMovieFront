@@ -1,9 +1,8 @@
 function validateConnexionForm() {
-    const submitButton = document.getElementById(`connexion-button`);
     const $mailRegexErrorMessage = document.getElementById("invalid-email-login-feedback");
     const $emptyErrorMessage = document.getElementById('invalid-empty-feedback');
 
-    if (validateInputsFillingState()) {
+    if (validateInputsFillingState("connexion")) {
         $emptyErrorMessage.style.display = "none";
     } else {
         $emptyErrorMessage.style.display = "block";
@@ -16,12 +15,8 @@ function validateConnexionForm() {
     }
 
     return (
-        (
-        validateInputsFillingState() &&
-        validateMail()
-    ) ? true : false);
+        !!(
+            validateInputsFillingState("connexion") &&
+            validateMail()
+        ));
 }
-
-
-
-
