@@ -30,5 +30,4 @@ function addButtonsForConnectedUser(container) {
         },
         "Inscription"
     );
-    return null;
 }

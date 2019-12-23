@@ -1,7 +1,8 @@
-function doInscriptionActions(pageContent) {
+function doInscriptionActions(pageContent, responseStatus) {
+
     replaceContent(pageContent, 'app');
 
-    if (!isUserConnected()) {
+    if (responseStatus === 403) {
 
         const $signInForm = document.getElementById('inscription-form');
 
@@ -28,8 +29,12 @@ function doInscriptionActions(pageContent) {
                 return validateInscriptionForm();
             }
         });
-    } else {
-        console.log('You must log out to sign in.')
+
+    } else if(responseStatus === 200) {
         redirectionAction('#error');
+        return console.log('You must log out to sign in.')
+
+    } else {
+        return new Error(responseStatus);
     }
 }

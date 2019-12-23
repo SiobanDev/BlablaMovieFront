@@ -1,6 +1,8 @@
 'use strict';
 
-function doAccueilActions(pageContent) {
+function doAccueilActions(pageContent, responseStatus) {
+
     replaceContent(pageContent, 'app');
-    updateHomeIfUserConnectedOrNot();
+
+    updateHomeIfUserConnectedOrNot(responseStatus);
 }

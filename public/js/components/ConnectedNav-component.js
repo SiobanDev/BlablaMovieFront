@@ -21,7 +21,7 @@ function addNavItemsForConnectedUser(container) {
         {
             href: "#movies"
         },
-        "Movies",
+        "Films",
     );
 
     //Historical Nav Item
@@ -48,6 +48,4 @@ function addNavItemsForConnectedUser(container) {
         },
         "Historical",
     );
-
-    return null;
 }

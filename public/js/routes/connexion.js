@@ -1,7 +1,7 @@
-function doConnexionActions(pageContent) {
+function doConnexionActions(pageContent, responseStatus) {
     replaceContent(pageContent, 'app');
 
-    if (!isUserConnected()) {
+    if (responseStatus === 403) {
         const $signInForm = document.getElementById('connexion-form');
 
         $signInForm.addEventListener('submit', async (e) => {
@@ -24,8 +24,11 @@ function doConnexionActions(pageContent) {
                 return validateConnexionForm();
             }
         });
+    } else if(responseStatus === 200) {
+        redirectionAction('#error');
+        return console.log('You must log out to log in.')
+
     } else {
-        console.log('You are already connected.')
-        return redirectionAction('#error');
+        return new Error(responseStatus);
     }
 }

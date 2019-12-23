@@ -9,12 +9,12 @@
  * @param defaultRoute, true if the route is the default route of our app.
  * @constructor
  */
-function Route(name, htmlName, callback, defaultRoute) {
+function Route(name, htmlName, apiResponse, callback, defaultRoute) {
     try {
         if (!name || !htmlName) {
             throw 'Error : name or htmlName params is not defined.';
         }
-        this.constructor(name, htmlName, callback, defaultRoute);
+        this.constructor(name, htmlName, apiResponse, callback, defaultRoute);
     } catch (e) {
         console.error(e);
     }
@@ -24,12 +24,14 @@ function Route(name, htmlName, callback, defaultRoute) {
 Route.prototype = {
     name: undefined,
     htmlName: undefined,
+    apiResponse: undefined,
     default: undefined,
     callback: undefined,
 
-    constructor: function (name, htmlName, callback, defaultRoute) {
+    constructor: function (name, htmlName, apiResponse, callback, defaultRoute) {
         this.name = name;
         this.htmlName = htmlName;
+        this.apiResponse = apiResponse;
         this.default = defaultRoute;
         this.callback = callback;
     },

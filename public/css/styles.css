@@ -407,7 +407,7 @@ p.members-hook {
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding-right: 5%;
+    padding: 5% 0 5% 5%;
     min-height: 213px;
 }
 
@@ -440,13 +440,14 @@ p.members-hook {
     font-size: 200%;
     color: #1b1b1d;
     text-align: center;
-    background: rgba(200, 200, 200, 0.5);
+    background: rgba(27, 27, 29, 0.1);
     border-radius: 5px;
     width: 45%;
 }
 
 .time-indication {
     width: 100%;
+    text-align: center;
 }
 
 #all-movies-items {
@@ -640,6 +641,11 @@ footer .footer-row .facebook-item, footer .footer-row .pinterest-item, footer .f
         margin-left: 12px;
     }
 
+    .movies-hook > .column3 {
+        width: 100%;
+        min-height: 100%;
+    }
+
     footer .footer-row {
         padding: 2% 0;
     }
@@ -680,17 +686,12 @@ footer .footer-row .facebook-item, footer .footer-row .pinterest-item, footer .f
     body .btn, body .form-control {
         width: auto;
     }
-
-    .movies-hook > .column3 {
-        width: 50%;
-        min-height: 100%;
-    }
 }
 
 @media (min-width: 1200px) {
 
     header, .main-content, footer {
-        padding: 0 20%;
+        padding: 5% 20%;
     }
 
     .movies-hook > .column2 {

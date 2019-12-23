@@ -3,26 +3,26 @@
 (function () {
     async function init() {
         try {
-            updateNavIfUserConnectedOrNot();
+            const response = await isUserConnected();
 
             new Router([
-                new Route('accueil', 'home.html', doAccueilActions, true),
+                new Route('accueil', 'home.html', response.status, doAccueilActions, true),
 
-                new Route('inscription', 'inscription.html', doInscriptionActions),
+                new Route('inscription', 'inscription.html', response.status, doInscriptionActions),
 
-                new Route('connexion', 'connexion.html', doConnexionActions),
+                new Route('connexion', 'connexion.html', response.status, doConnexionActions),
 
-                new Route('deconnexion', 'home.html', doDeconnexionActions),
+                new Route('deconnexion', 'home.html', response.status, doDeconnexionActions),
 
-                new Route('movies', 'movies.html', doMoviesActions),
+                new Route('movies', 'movies.html', response.status, doMoviesActions),
 
-                new Route('historical', 'historical.html', doHistoricalActions),
+                new Route('historical', 'historical.html', response.status, doHistoricalActions),
 
-                new Route('contact', 'contact.html'),
+                new Route('contact', 'contact.html', response.status),
 
-                new Route('infos', 'infos.html'),
+                new Route('infos', 'infos.html', response.status),
 
-                new Route('error', 'error.html', doErrorActions)
+                new Route('error', 'error.html', response.status, doErrorActions)
             ]);
 
         } catch (e) {

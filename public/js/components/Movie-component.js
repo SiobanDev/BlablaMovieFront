@@ -15,6 +15,7 @@ function movieConstruct(movieData, index) {
     let moviePoster = document.createElement('img');
     moviePoster.classList.add('movie-poster');
     moviePoster.setAttribute('src', movieData['Poster']);
+    moviePoster.setAttribute('alt', "poster-img");
     movieView.appendChild(moviePoster);
 
     let movieYear = document.createElement('p');
@@ -38,6 +39,7 @@ function movieConstruct(movieData, index) {
     let movieVoteIcon = document.createElement('img');
     movieVoteIcon.classList.add('vote-icon');
     movieVoteIcon.setAttribute('src', '/public/images/clap-clap.png');
+    movieVoteIcon.setAttribute('alt', 'vote-icon');
     movieVoteButton.appendChild(movieVoteIcon);
 
     let movieVoteNumber = document.createElement('p');

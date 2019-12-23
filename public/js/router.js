@@ -58,7 +58,7 @@ Router.prototype = {
             var pageContent = {
                 content: undefined,
                 error: undefined
-            }
+            };
 
             if (((window.location.hash.length > 0) && (route.isActiveRoute(window.location.hash.substr(1))))
                 || (window.location.hash.length === 0 && route.default)) {
@@ -67,7 +67,7 @@ Router.prototype = {
                     pageContent.content = await scope.loadView(route.htmlName);
 
                     if (route.callback) {
-                        route.callback(pageContent.content);
+                        route.callback(pageContent.content, route.apiResponse);
                     }
                 } catch (e) {
                     pageContent.error = e;
