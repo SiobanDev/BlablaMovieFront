@@ -1,11 +1,9 @@
 'use strict';
 
 (function () {
-    showLoader(true, 'app');
-    localStorage.setItem("token", null);
-
     async function init() {
         try {
+            showLoader(true, 'app');
             await updateNavIfUserConnectedOrNot();
 
             new Router([
@@ -13,7 +11,7 @@
 
                 new Route('inscription', 'inscription.html', doInscriptionActions),
 
-                new Route('connexion', 'connexion.html', doConnexionActions),
+                new Route('connexion', 'connexion.html', doConnectionActions),
 
                 new Route('deconnexion', 'home.html', doDeconnexionActions),
 

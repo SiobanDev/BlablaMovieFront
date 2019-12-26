@@ -9,22 +9,30 @@
 // }
 
 async function isUserConnected() {
-    const token = localStorage.getItem("token")
+    let getToken = localStorage.getItem("token");
 
-    const res = await fetch(
-        checkConnexionApiUrl,
-        {
-            method: 'GET',
-            headers:
-                {
-                    'Content-type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-            credentials: 'include'
+    try{
+        const res = await fetch(
+            getLoginUrl,
+            {
+                method: 'GET',
+                headers:
+                    {
+                        'Authorization': `Bearer ${getToken}`
+                    },
+                credentials: 'include'
+            }
+        );
+
+        if(res.status === 200){
+            return res;
         }
-    );
 
-    return res.status === 200;
+        return console.log("No connected user");
+
+    } catch (e) {
+        throw new Error(e);
+    }
 }
 
 // function isUserConnected() {

@@ -6,7 +6,7 @@ function addButtonsForConnectedUser(container) {
         "main-hook"
     );
 
-    //Connexion button
+    //Connection button
     addDomElement(
         "connexion-btn",
         "a",
@@ -16,7 +16,7 @@ function addButtonsForConnectedUser(container) {
             role: "button",
             href: "#connexion"
         },
-        "Connexion"
+        "Connection"
     );
     //Inscription button
     addDomElement(

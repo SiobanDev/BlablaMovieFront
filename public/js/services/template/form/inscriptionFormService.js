@@ -1,3 +1,10 @@
+function validateInscriptionMail() {
+    let $mail = document.getElementById("mail").value;
+    let regex = new RegExp(/^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/);
+
+    return (regex.test($mail));
+}
+
 function validateInscriptionRegexLogin() {
     const loginValue = document.getElementById("login").value;
 
@@ -65,7 +72,7 @@ function validateInscriptionForm() {
         $loginSizeErrorMessage.style.display = "block";
     }
 
-    if (validateMail()) {
+    if (validateInscriptionMail()) {
         $mailRegexErrorMessage.style.display = "none";
         submitButton.disabled = false;
     } else {
@@ -89,7 +96,7 @@ function validateInscriptionForm() {
         !!(
             validateInputsFillingState("inscription") &&
             validateInscriptionLogin() &&
-            validateMail() &&
+            validateInscriptionMail() &&
             validateInscriptionPassword() &&
             validateInscriptionAge()
         ));

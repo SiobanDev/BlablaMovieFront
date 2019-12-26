@@ -98,7 +98,7 @@ body {
     font-family: 'Fira Sans', Arial, sans-serif, Verdana;
     font-weight: 300;
     font-size: 100%;
-    background: url(../images/interstellar-gr.png) no-repeat, black;
+    background: url(../images/interstellar-degrade.png) no-repeat, #1b1b1d;
     background-size: 200% auto;
     color: #ffffff;
     display: flex;
@@ -128,7 +128,7 @@ ul {
 body .main-content {
     display: flex;
     flex-direction: column;
-    padding: 2% 20%;
+    padding: 2% 15%;
 }
 
 
@@ -420,7 +420,7 @@ p.members-hook {
 
 .gold-form {
     position: absolute;
-    width: 120%;
+    width: 100%;
     right: 0;
     z-index: 0;
     left: auto;
@@ -462,7 +462,7 @@ p.members-hook {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 30%;
+    width: 32%;
     margin-bottom: 20px;
 }
 
@@ -484,18 +484,18 @@ p.members-hook {
     background: white;
     box-shadow: rgb(80, 80, 80) 0px 1px 7px;
     z-index: 999;
-    height: 40px;
+    height: 25px;
     color: #1b1b1d;
     font-size: 120%;
-    width: 20%;
+    width: 24%;
     text-align: center;
-    line-height: 40px;
+    line-height: 25px;
     font-weight: bold;
     min-width: 32px;
 }
 
 .movie-poster {
-    border-radius: 10px 10px 0 0;
+    border-radius: 4px 4px 0 0;
     width: 100%;
 }
 
@@ -508,8 +508,8 @@ p.members-hook {
 
 .movie-infos {
     background: white;
-    border-radius: 0 0 10px 10px;
-    padding: 25px 5% 10% 5%;
+    border-radius: 0 0 4px 4px;
+    padding: 15px 5% 15px 5%;
     display: flex;
     align-items: flex-end;
 }
@@ -518,7 +518,7 @@ p.members-hook {
     color: #1b1b1d;
     font-weight: bold;
     width: 100%;
-    font-size: 110%;
+    font-size: 80%;
 }
 
 .movie-vote-button {
@@ -530,15 +530,20 @@ p.members-hook {
     border-radius: 20px;
     color: #1b1b1d;
     width: 25%;
-    height: 35px;
+    height: 25px;
     display: flex;
     justify-content: space-around;
     min-width: 53px;
 }
 
 .vote-icon {
-    height: 20px;
+    height: 18px;
     width: auto;
+}
+
+.vote-number{
+    font-size: 75%;
+    font-weight: bold;
 }
 
 /** ERROR **************************************************************/
@@ -682,11 +687,6 @@ footer .footer-row .facebook-item, footer .footer-row .pinterest-item, footer .f
     body .btn, body .form-control {
         width: auto;
     }
-
-    .movies-hook > .column3 {
-        width: 50%;
-        min-height: 100%;
-    }
 }
 
 @media (min-width: 1200px) {
@@ -697,5 +697,10 @@ footer .footer-row .facebook-item, footer .footer-row .pinterest-item, footer .f
 
     .movies-hook > .column2 {
         width: 50%;
+    }
+
+    .movies-hook > .column3 {
+        width: 50%;
+        min-height: 100%;
     }
 }

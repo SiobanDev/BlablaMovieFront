@@ -1,6 +1,6 @@
 async function doMoviesActions (pageContent) {
 
-    if (!await isUserConnected()) {
+    if (await isUserConnected()) {
         replaceContent(pageContent, 'app');
 
         try {

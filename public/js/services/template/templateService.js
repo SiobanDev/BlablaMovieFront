@@ -3,6 +3,12 @@ function showLoader(show, divId) {
 
     if ($container) {
         if (show) {
+            const $loaderDiv = document.getElementById("loader");
+
+            if($loaderDiv){
+                $container.remove();
+            }
+
             const $loaderContainer = document.createElement('div');
             $loaderContainer.id = 'loader';
             $loaderContainer.classList.add('spinner-grow', 'text-light');
@@ -20,33 +26,33 @@ function showLoader(show, divId) {
             if ($div) {
                 $container.removeChild($div)
             }
-            showTemplate(true)
         }
     }
 }
 
-function updateNavIfUserConnectedOrNot(responseStatus) {
-    //If user is not connected
-    if (responseStatus === 403) {
+async function updateNavIfUserConnectedOrNot() {
+
+    if (localStorage.getItem("token") === null) {
         try {
+            //Remove nav items Movies and Historical
             removeDomElementList
             (
                 [
                     "header-nav__movies-item",
-                    "header-nav__historical-item",
+                    "header-historical-item",
                     "footer-nav__movies-item",
-                    "footer-nav__historical-item",
+                    "footer-historical-item",
                     'logout-item'
                 ]
             );
 
-            return false;
+            return true;
 
         } catch (e) {
             throw new Error(e);
         }
-        //If user is connected
-    } else if (responseStatus === 200) {
+
+    } else {
         try {
             addNavItemsForConnectedUser("header-nav");
             addNavItemsForConnectedUser("footer-nav");
@@ -70,14 +76,14 @@ function updateNavIfUserConnectedOrNot(responseStatus) {
     }
 }
 
-function updateHomeIfUserConnectedOrNot(responseStatus) {
+function updateHomeIfUserConnectedOrNot() {
     let $mainHook = document.getElementById("main-hook");
 
-    //If user is not connected
-    if (responseStatus === 403) {
+    if (localStorage.getItem("token") === null) {
+        //If user is not connected
         try {
             if ($mainHook) {
-                addButtonsForConnectedUser($mainHook);
+                addButtonsForConnectedUser("home-buttons");
                 return true;
             }
             return false;
@@ -86,7 +92,7 @@ function updateHomeIfUserConnectedOrNot(responseStatus) {
             throw new Error(e);
         }
         //If user is connected
-    } else if (responseStatus === 200) {
+    } else {
         try {
             if ($mainHook) {
                 removeDomElement("home-buttons");

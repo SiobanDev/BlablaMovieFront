@@ -1,5 +1,5 @@
 function validateMail() {
-    let $mail = document.getElementById("mail").value;
+    let $mail = document.getElementById("username").value;
     let regex = new RegExp(/^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/);
 
     return (regex.test($mail));
@@ -59,7 +59,7 @@ function displayFeedbackAfterSubmit(feedbackType) {
             $container.appendChild($feedbackDiv);
             break;
 
-        //Connexion
+        //Connection
         case 2:
             $feedbackDiv.style.background = "#f7b436";
 
@@ -84,7 +84,7 @@ function displayFeedbackAfterSubmit(feedbackType) {
             $container.appendChild($feedbackDiv);
             break;
 
-        //Error Connexion
+        //Error Connection
         case 4:
             $feedbackImage.src = "/public/images/error.png";
             $feedbackImage.alt = "error-image";

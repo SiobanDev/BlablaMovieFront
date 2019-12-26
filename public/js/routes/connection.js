@@ -1,6 +1,5 @@
-async function doConnexionActions(pageContent) {
+async function doConnectionActions(pageContent) {
     if (!await isUserConnected()) {
-        showLoader(false, 'app');
         replaceContent(pageContent, 'app');
 
         const $signInForm = document.getElementById('connexion-form');
@@ -8,14 +7,18 @@ async function doConnexionActions(pageContent) {
         $signInForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            if (validateConnexionForm()) {
+            if (validateConnectionForm()) {
                 showLoader(true, 'app');
 
                 try {
-                    const apiUserConnected = await connect(getFormData(['mail', 'password']));
+                    const apiConnectionResponse = await connect(getFormData(['username', 'password']));
+
                     showLoader(false, 'app');
 
-                    if (apiUserConnected) {
+                    if (apiConnectionResponse.status >= 200 && apiConnectionResponse.status < 400) {
+                        let jsonResponse = await apiConnectionResponse.json();
+                        localStorage.setItem("token", jsonResponse.token);
+
                         displayFeedbackAfterSubmit(2);
                         setTimeout(() => {
                             redirectionAction('#movies');
@@ -29,7 +32,7 @@ async function doConnexionActions(pageContent) {
                     throw new Error(error);
                 }
             } else {
-                validateConnexionForm();
+                validateConnectionForm();
                 return false;
             }
         });
