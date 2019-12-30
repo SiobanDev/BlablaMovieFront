@@ -30,9 +30,8 @@ function showLoader(show, divId) {
     }
 }
 
-async function updateNavIfUserConnectedOrNot() {
-
-    if (localStorage.getItem("token") === null) {
+async function updateNavIfUserConnectedOrNot(userState) {
+    if (!userState) {
         try {
             //Remove nav items Movies and Historical
             removeDomElementList
@@ -45,8 +44,7 @@ async function updateNavIfUserConnectedOrNot() {
                     'logout-item'
                 ]
             );
-
-            return true;
+            return false;
 
         } catch (e) {
             throw new Error(e);
@@ -76,17 +74,18 @@ async function updateNavIfUserConnectedOrNot() {
     }
 }
 
-function updateHomeIfUserConnectedOrNot() {
+async function updateHomeIfUserConnectedOrNot() {
+    const userState = await isUserConnected();
     let $mainHook = document.getElementById("main-hook");
 
-    if (localStorage.getItem("token") === null) {
+    if (!userState) {
         //If user is not connected
         try {
             if ($mainHook) {
                 addButtonsForConnectedUser("home-buttons");
-                return true;
+                return false;
             }
-            return false;
+            return null;
 
         } catch (e) {
             throw new Error(e);
@@ -98,8 +97,7 @@ function updateHomeIfUserConnectedOrNot() {
                 removeDomElement("home-buttons");
                 return true;
             }
-            return false;
-
+            return null;
         } catch (e) {
             throw new Error(e);
         }

@@ -1,13 +1,3 @@
-// function isUserConnected() {
-//     console.log("getCookie('PHPSESSID')", getCookie("PHPSESSID"));
-//     console.log("document.cookie", document.cookie);
-//
-//     if(getCookie("PHPSESSID")) {
-//         return true;
-//     }
-//     return false;
-// }
-
 async function isUserConnected() {
     let getToken = localStorage.getItem("token");
 
@@ -24,21 +14,16 @@ async function isUserConnected() {
             }
         );
 
-        if(res.status === 200){
-            return res;
+        if(getToken !== null && res.status === 401) {
+            localStorage.setItem("token", null);
+            return false;
         }
 
-        return console.log("No connected user");
+        if(res.status === 200){
+            return true;
+        }
 
     } catch (e) {
         throw new Error(e);
     }
 }
-
-// function isUserConnected() {
-//     const sessionCookie = browser.cookies.get({name: "PHPSESSID"});
-//     sessionCookie.then(logCookie);
-//
-//     return (sessionCookie ? true : false);
-// }
-

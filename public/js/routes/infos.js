@@ -1,4 +1,4 @@
-async function doHistoricalActions(pageContent) {
+async function doContactActions(pageContent) {
 
     if (await isUserConnected()) {
         replaceContent(pageContent, 'app');

@@ -1,4 +1,4 @@
-async function doHistoricalActions(pageContent) {
+async function doInfosActions(pageContent) {
 
     if (await isUserConnected()) {
         replaceContent(pageContent, 'app');

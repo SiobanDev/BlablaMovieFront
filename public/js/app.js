@@ -4,7 +4,8 @@
     async function init() {
         try {
             showLoader(true, 'app');
-            await updateNavIfUserConnectedOrNot();
+            const userState = await isUserConnected();
+            await updateNavIfUserConnectedOrNot(userState);
 
             new Router([
                 new Route('accueil', 'home.html', doAccueilActions, true),
