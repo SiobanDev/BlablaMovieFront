@@ -1,27 +1,6 @@
-async function isUserConnected() {
-    try {
-        const response = await fetch(checkConnexionApiUrl, {
-                method: 'GET',
-                headers:
-                    {
-                        'Content-type': 'application/json'
-                    },
-                credentials: 'include'
-            }
-        );
-        updateNavIfUserConnectedOrNot(response.status);
-        updateHomeIfUserConnectedOrNot(response.status);
-
-        return response;
-
-    } catch (e) {
-        throw new Error(e);
-    }
-}
-
 async function signIn(userData) {
     try {
-        const apiConnexionResponse = await fetch
+        const apiResponse = await fetch
         (
             apiInscriptionUrl,
             {
@@ -35,14 +14,7 @@ async function signIn(userData) {
             }
         );
 
-        if (apiConnexionResponse.status === 200) {
-            showLoader(true, 'app');
-            redirectionAction('#accueil');
-            updateHomeIfUserConnectedOrNot();
-
-            return true;
-        }
-        return false;
+        return apiResponse.status >= 200 && apiResponse.status < 400;
 
     } catch (e) {
         throw new Error(e);
@@ -51,9 +23,9 @@ async function signIn(userData) {
 
 async function connect(userData) {
     try {
-        let apiConnexionResponse = await fetch
+        let apiResponse = await fetch
         (
-            apiConnexionUrl,
+            apiConnectionUrl,
             {
                 method: 'POST',
                 headers:
@@ -65,8 +37,7 @@ async function connect(userData) {
             }
         );
 
-        return (apiConnexionResponse.status === 200);
-
+        return apiResponse;
     } catch (e) {
         throw new Error(e);
     }
@@ -75,27 +46,29 @@ async function connect(userData) {
 async function signOut() {
     const response = await fetch(apiSignOutUrl);
 
-    return response;
+    return ((response.status === 200));
 }
 
 async function displayMovies() {
+    let getToken = localStorage.getItem("token");
+
     showLoader(true, 'all-movies-items');
 
     try {
-        //// moviesData with MyFetchis a string !
-        // var moviesData = await myFetch(apiMoviesUrl, 'GET', {'Content-type': 'application/json'}, null);
         const response = await fetch(
             apiMoviesUrl,
             {
                 method: 'GET',
                 headers: {
-                    'Content-type': 'application/json'
+                    'Authorization': `Bearer ${getToken}`
                 },
                 credentials: 'include',
             }
         );
 
         const movieList = await response.json();
+
+        showLoader(false, 'all-movies-items');
 
         let movieContent = document.getElementById('all-movies-items');
 
@@ -104,7 +77,6 @@ async function displayMovies() {
 
             const movie = movieList["Search"][i];
             const movieItem = movieConstruct(movie, i);
-            showLoader(false, 'all-movies-items');
 
             if (movieContent) {
                 movieContent.appendChild(movieItem);
@@ -114,4 +86,3 @@ async function displayMovies() {
         throw new Error(e);
     }
 }
-

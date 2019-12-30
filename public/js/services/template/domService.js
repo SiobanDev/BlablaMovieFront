@@ -16,7 +16,7 @@ function addDomElement
     }
 
     if (classesArray) {
-        $element.classList.add(classesArray.join("\s"));
+        $element.classList.add(classesArray.join(""));
     }
 
     if (attributesObject) {
@@ -30,13 +30,14 @@ function addDomElement
     }
 
     $container.appendChild($element);
+    return null;
 }
 
 function removeDomElement(elmtId) {
     //Test if the  already exists and if it is the case, we need to remove it.
 
     if (elmtId) {
-        const $element = document.getElementById(elmtId);
+        const $element = document.querySelector(elmtId);
         $element.parentElement.removeChild($element);
     }
 
@@ -45,7 +46,7 @@ function removeDomElement(elmtId) {
 
 function removeDomElementList(idsArray) {
     idsArray.forEach((id) => {
-        removeDomElement(id);
+        removeDomElement(null, id);
     });
 
     return null;

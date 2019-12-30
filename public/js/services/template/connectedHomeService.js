@@ -1,11 +1,4 @@
 function addButtonsForConnectedUser(container) {
-    //Home buttons
-    addDomElement(
-        "home-buttons",
-        "div",
-        "main-hook"
-    );
-
     //Connection button
     addDomElement(
         "connexion-btn",
@@ -30,4 +23,5 @@ function addButtonsForConnectedUser(container) {
         },
         "Inscription"
     );
+    return null;
 }

@@ -1,16 +1,16 @@
 function validateMail() {
-    let $mail = document.getElementById("mail").value;
+    let $mail = document.getElementById("username").value;
     let regex = new RegExp(/^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/);
 
     return (regex.test($mail));
 }
 
-function validateInputsFillingState() {
-    const $form = document.getElementById("connexion-form");
-    const inputsList = $form.getElementsByTagName("input");
+function validateInputsFillingState(formTypeName) {
+    const $form = document.getElementById(`${formTypeName}-form`);
+    const $inputsList = $form.getElementsByTagName("input");
 
     //With a map, the loop does not end with the return !
-    let inputsFillingStateList = Array.from(inputsList).map((input) => {
+    let inputsFillingStateList = Array.from($inputsList).map((input) => {
 
         return (input.value.length > 0);
     });
@@ -21,6 +21,11 @@ function validateInputsFillingState() {
 
 function displayFeedbackAfterSubmit(feedbackType) {
     let $container = document.getElementById("app");
+    let $feedback = document.getElementById("feedback-popup");
+
+    if($feedback) {
+        $container.removeChild($feedback);
+    }
 
     let $feedbackDiv = document.createElement('div');
     $feedbackDiv.id = 'feedback-popup';
@@ -48,13 +53,13 @@ function displayFeedbackAfterSubmit(feedbackType) {
             $feedbackImage.alt = "thumb-success";
             $feedbackImage.classList.add('feedback-image');
 
-            $feedbackText.innerHTML = "Félicitations, vous avez bien été enregistré(e) !";
+            $feedbackText.innerHTML = "Félicitations, vous avez bien été enregistré(e) ! Vous pouvez maintenant vous connecter.";
 
             $feedbackDiv.appendChild($feedbackText);
             $container.appendChild($feedbackDiv);
             break;
 
-        //Connexion
+        //Connection
         case 2:
             $feedbackDiv.style.background = "#f7b436";
 
@@ -79,7 +84,7 @@ function displayFeedbackAfterSubmit(feedbackType) {
             $container.appendChild($feedbackDiv);
             break;
 
-        //Error Connexion
+        //Error Connection
         case 4:
             $feedbackImage.src = "/public/images/error.png";
             $feedbackImage.alt = "error-image";

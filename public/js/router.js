@@ -23,7 +23,7 @@ Router.prototype = {
     routes: undefined,
     // rootElem is the root element of our application, the place where other HTML’s gets rendered. In our case, it's #app in index.html
     rootElem: undefined,
-    constructor: function (routes) {
+     constructor: function (routes) {
         this.routes = routes;
         // this.rootElem = document.getElementById('app');
     },
@@ -67,7 +67,7 @@ Router.prototype = {
                     pageContent.content = await scope.loadView(route.htmlName);
 
                     if (route.callback) {
-                        route.callback(pageContent.content, route.apiResponse);
+                        route.callback(pageContent.content);
                     }
                 } catch (e) {
                     pageContent.error = e;

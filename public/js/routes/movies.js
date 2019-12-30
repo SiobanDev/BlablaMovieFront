@@ -1,5 +1,6 @@
-async function doMoviesActions(pageContent, responseStatus) {
-    if (responseStatus === 200) {
+async function doMoviesActions (pageContent) {
+
+    if (await isUserConnected()) {
         replaceContent(pageContent, 'app');
 
         try {
@@ -7,11 +8,7 @@ async function doMoviesActions(pageContent, responseStatus) {
         } catch (e) {
             throw new Error(e);
         }
-    } else if (responseStatus === 403) {
-        redirectionAction('#error');
-        return console.log('You must log out to sign in.')
-
     } else {
-        return new Error(responseStatus);
+        return redirectionAction('#error');
     }
 }

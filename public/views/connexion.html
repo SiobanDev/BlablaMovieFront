@@ -1,15 +1,15 @@
-<div id="form-content" class="row">
+<div id="form-content" class="row content">
     <div class="col-md-8 order-md-1">
-        <h4 class="mb-3">Connexion</h4>
+        <h4 class="mb-3">Connection</h4>
         <form method="POST" id="connexion-form" class="needs-validation">
             <div class="mb-3">
-                <label for="mail">Mail</label>
+                <label for="username">Mail</label>
 
                 <div id="invalid-email-login-feedback" class="invalid-feedback">
                     Votre email n'est pas au bon format.
                 </div>
 
-                <input type="email" class="form-control" id="mail" name="mail" placeholder="Mail" onsubmit="validateMail()" autofocus>
+                <input type="email" class="form-control" id="username" name="username" placeholder="Mail" onsubmit="validateConnectionMail()" autofocus>
             </div>
 
             <div class="mb-3">
@@ -21,7 +21,7 @@
                 Certains champs requis sont vides.
             </div>
 
-            <button id="connexion-button" class="btn btn-primary btn-lg btn-block" type="submit">Connexion</button>
+            <button id="connexion-button" class="btn btn-primary btn-lg btn-block" type="submit">Connection</button>
 
         </form>
     </div>
